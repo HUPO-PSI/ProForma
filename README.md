@@ -1,11 +1,11 @@
-ProForma (Proteoform and Peptidoform Notation)
+# ProForma (Proteoform and Peptidoform Notation)
 
 Protein and peptide sequences are usually represented using a string of amino acids using a well-known one letter code endorsed by the IUPAC. However, there is still no clear consensus about how to represent ‘proteoforms’ and ‘peptidoforms’, meaning all possible variations of a protein/peptide sequence, including protein modifications, both artefactual and post-translational modifications (PTMs). There are indeed multiple ways of encoding mass modifications and extended discussion has taken place to achieve a consensus. A standard notation for proteoforms and peptidoforms is then required for the community, so that it can be embedded in many relevant PSI (and potentially other) file formats.
 
-The PSI has developed a format called PEFF (PSI Extended FASTA Format, http://www.psidev.info/peff) that can be used to represent proteoforms. Additionally, the Consortium for Top Down Proteomics (CTDP) developed a notation format called ProForma (https://topdownproteomics.github.io/ProteoformNomenclatureStandard/), aiming to represent proteoforms.    
+The PSI has developed a format called [PEFF (PSI Extended FASTA Format)](http://www.psidev.info/peff) that can be used to represent proteoforms. Additionally, the Consortium for Top Down Proteomics [CTDP](http://topdownproteomics.org) developed a notation format called [ProForma v1](https://topdownproteomics.github.io/ProteoformNomenclatureStandard/), aiming to represent proteoforms.    
 
 This format specification represents the consortium reached by both groups in order to standardise the representation of proteoforms/peptidoforms supporting the main proteomics approaches, including both bottom-up (focused on peptides/peptidoforms) and top down (focused on proteins/proteoforms) approaches.
 
  
 
-MORE INFORMATION COMING SOON
+__MORE INFORMATION COMING SOON__
