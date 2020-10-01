@@ -12,8 +12,9 @@ The ProForma notation is a string of characters that represent linearly one or m
 ##### Canonical [IUPAC amino acids](http://publications.iupac.org/pac/1984/pdf/5605x0595.pdf)
 * `EMEVEESPEK`
 ##### PTMs using common ontologies or controlled vocabularies (e.g. [Unimod](http://www.unimod.org/), [PSI-MOD](https://www.ebi.ac.uk/ols/ontologies/mod), and [RESID](https://proteininformationresource.org/resid/))
-* `EM[UNIMOD:35]EVEES[UNIMOD:21]PEK`
-* `EM[L-methionine sulfoxide]EVEES[O-phospho-L-serine]PEK`
+* `EM[Oxidation]EVEES[UNIMOD:21]PEK`
+* `EM[L-methionine sulfoxide]EVEES[MOD:00046]PEK`
+* `EM[R:L-methionine (R)-sulfoxide]EVEES[RESID:AA0037]PEK`
 ##### Cross-linkers using the [XL-MOD](https://raw.githubusercontent.com/HUPO-PSI/mzIdentML/master/cv/XLMOD.obo) ontology
 * `EMEVTK[XLMOD:02001#XL1]SESPEK[#XL1]`
 * `EVTSEKC[L-cystine (cross-link)#XL1]LEMSC[#XL1]EFD`
