@@ -36,5 +36,6 @@ The ProForma notation is a string of characters that represent linearly one or m
 ##### Global modifications (e.g. isotopic labeling or fixed protein modifications)
 * `<13C>ATPEILTVNSIGQLK`
 * `<[S-carboxamidomethyl-L-cysteine]@C>ATPEILTCNSIGCLK`
-##### Additional user-supplied textual information
+##### Additional user-supplied information and multi-valued tags
 * `ELV[info:AnyString]IS`
+* `ELV[+11.9784|info:suspected frobinylation]IS`
