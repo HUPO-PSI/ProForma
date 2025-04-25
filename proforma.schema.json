@@ -542,7 +542,7 @@
                 "properties": {
                     "modification": {
                         "$ref": "#/$defs/tags",
-                        "description": "Labile modifications cannot be cross-linked or ambiguous"
+                        "description": "Fixed modifications cannot be cross-linked or ambiguous"
                     },
                     "position_rules": {
                         "items": {
