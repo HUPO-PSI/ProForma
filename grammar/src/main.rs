@@ -14,23 +14,15 @@ mod generate;
 
 fn main() {
     // Parse EBNF
-    let mut definition_file = String::new();
-    let _file = std::fs::File::open("proforma.ebnf")
-        .unwrap()
-        .read_to_string(&mut definition_file)
-        .unwrap();
-    let mut tests_file = String::new();
-    let _file = std::fs::File::open("test.toml")
-        .unwrap()
-        .read_to_string(&mut tests_file)
-        .unwrap();
-    let syntax = ebnf::lex::parse_str("proforma.ebnf", &definition_file).unwrap_or_else(|e| {
-        print_error(e, &definition_file, "Lexing error");
+    let definition_file = include_str!("../proforma.ebnf");
+    let tests_file = include_str!("../test.toml");
+    let syntax = ebnf::lex::parse_str("proforma.ebnf", definition_file).unwrap_or_else(|e| {
+        print_error(e, definition_file, "Lexing error");
         exit(-1);
     });
     let config = ebnf::parser::graph::GraphConfig::new();
     let syntax = Syntax::new(syntax).unwrap_or_else(|e| {
-        print_error(e, &definition_file, "Syntax error");
+        print_error(e, definition_file, "Syntax error");
         exit(-2);
     });
     let graph = ebnf::parser::graph::LexGraph::compile(&syntax, &config);
