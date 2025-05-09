@@ -212,7 +212,7 @@
                     "type": "integer"
                 },
                 {
-                    "$ref": "global_charge_carriers"
+                    "$ref": "#/$defs/global_charge_carriers"
                 }
             ]
         },
@@ -238,13 +238,13 @@
         "modification": {
             "anyOf": [
                 {
-                    "ref": "modification_ambiguous"
+                    "$ref": "#/$defs/modification_ambiguous"
                 },
                 {
-                    "ref": "modification_cross_linker"
+                    "$ref": "#/$defs/modification_cross_linker"
                 },
                 {
-                    "ref": "tags"
+                    "$ref": "#/$defs/tags"
                 }
             ],
             "description": "A modification, could be ambiguous, cross-linked, or just a single modification (which might be defined multiple times)"
@@ -252,10 +252,10 @@
         "modification_ambiguous": {
             "anyOf": [
                 {
-                    "ref": "modification_ambiguous_primary"
+                    "$ref": "#/$defs/modification_ambiguous_primary"
                 },
                 {
-                    "ref": "modification_ambiguous_secondary"
+                    "$ref": "#/$defs/modification_ambiguous_secondary"
                 }
             ]
         },
@@ -397,13 +397,13 @@
         "sequence": {
             "anyOf": [
                 {
-                    "ref": "sequence_ambiguous"
+                    "$ref": "#/$defs/sequence_ambiguous"
                 },
                 {
-                    "ref": "sequence_element"
+                    "$ref": "#/$defs/sequence_element"
                 },
                 {
-                    "ref": "sequence_region"
+                    "$ref": "#/$defs/sequence_region"
                 }
             ],
             "description": "A region in a peptide sequence"
@@ -540,22 +540,22 @@
             "items": {
                 "anyOf": [
                     {
-                        "ref": "tag_accession"
+                        "$ref": "#/$defs/tag_accession"
                     },
                     {
-                        "ref": "tag_formula"
+                        "$ref": "#/$defs/tag_formula"
                     },
                     {
-                        "ref": "tag_glycan"
+                        "$ref": "#/$defs/tag_glycan"
                     },
                     {
-                        "ref": "tag_info"
+                        "$ref": "#/$defs/tag_info"
                     },
                     {
-                        "ref": "tag_mass"
+                        "$ref": "#/$defs/tag_mass"
                     },
                     {
-                        "ref": "tag_name"
+                        "$ref": "#/$defs/tag_name"
                     }
                 ]
             },

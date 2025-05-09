@@ -47,20 +47,20 @@
 - <a id="%24defs/global_charge"></a>**`global_charge`**
   - **Any of**
     - <a id="%24defs/global_charge/anyOf/0"></a>*integer*
-    - <a id="%24defs/global_charge/anyOf/1"></a>: Refer to *[global_charge_carriers](#obal_charge_carriers)*.
+    - <a id="%24defs/global_charge/anyOf/1"></a>: Refer to *[#/$defs/global_charge_carriers](#%24defs/global_charge_carriers)*.
 - <a id="%24defs/global_charge_carriers"></a>**`global_charge_carriers`** *(array)*
   - <a id="%24defs/global_charge_carriers/items"></a>**Items** *(object)*: Cannot contain additional properties.
     - <a id="%24defs/global_charge_carriers/items/properties/charged_formula"></a>**`charged_formula`**: Refer to *[#/$defs/charged_formula](#%24defs/charged_formula)*.
     - <a id="%24defs/global_charge_carriers/items/properties/occurance"></a>**`occurance`** *(number, required)*
 - <a id="%24defs/modification"></a>**`modification`**: A modification, could be ambiguous, cross-linked, or just a single modification (which might be defined multiple times).
   - **Any of**
-    - <a id="%24defs/modification/anyOf/0"></a>
-    - <a id="%24defs/modification/anyOf/1"></a>
-    - <a id="%24defs/modification/anyOf/2"></a>
+    - <a id="%24defs/modification/anyOf/0"></a>: Refer to *[#/$defs/modification_ambiguous](#%24defs/modification_ambiguous)*.
+    - <a id="%24defs/modification/anyOf/1"></a>: Refer to *[#/$defs/modification_cross_linker](#%24defs/modification_cross_linker)*.
+    - <a id="%24defs/modification/anyOf/2"></a>: Refer to *[#/$defs/tags](#%24defs/tags)*.
 - <a id="%24defs/modification_ambiguous"></a>**`modification_ambiguous`**
   - **Any of**
-    - <a id="%24defs/modification_ambiguous/anyOf/0"></a>
-    - <a id="%24defs/modification_ambiguous/anyOf/1"></a>
+    - <a id="%24defs/modification_ambiguous/anyOf/0"></a>: Refer to *[#/$defs/modification_ambiguous_primary](#%24defs/modification_ambiguous_primary)*.
+    - <a id="%24defs/modification_ambiguous/anyOf/1"></a>: Refer to *[#/$defs/modification_ambiguous_secondary](#%24defs/modification_ambiguous_secondary)*.
 - <a id="%24defs/modification_ambiguous_primary"></a>**`modification_ambiguous_primary`** *(object)*: The primary definition of an ambiguous modification. Cannot contain additional properties.
   - <a id="%24defs/modification_ambiguous_primary/properties/comkp"></a>**`comkp`** *(bool)*: ColocaliseModificationsOfKnownPosition: this controls if this modification of unknown position can be placed on a location where a placed modification is located. By default this is not allowed.
   - <a id="%24defs/modification_ambiguous_primary/properties/comup"></a>**`comup`** *(bool)*: ColocaliseModificationsOfUnknownPosition: this control if this modification of unknown position can coexist at the same location as any other modifications of unknown position. By default this is not allowed.
@@ -83,9 +83,9 @@
 - <a id="%24defs/positive_integer"></a>**`positive_integer`** *(integer)*
 - <a id="%24defs/sequence"></a>**`sequence`**: A region in a peptide sequence.
   - **Any of**
-    - <a id="%24defs/sequence/anyOf/0"></a>
-    - <a id="%24defs/sequence/anyOf/1"></a>
-    - <a id="%24defs/sequence/anyOf/2"></a>
+    - <a id="%24defs/sequence/anyOf/0"></a>: Refer to *[#/$defs/sequence_ambiguous](#%24defs/sequence_ambiguous)*.
+    - <a id="%24defs/sequence/anyOf/1"></a>: Refer to *[#/$defs/sequence_element](#%24defs/sequence_element)*.
+    - <a id="%24defs/sequence/anyOf/2"></a>: Refer to *[#/$defs/sequence_region](#%24defs/sequence_region)*.
 - <a id="%24defs/sequence_ambiguous"></a>**`sequence_ambiguous`** *(array)*
   - <a id="%24defs/sequence_ambiguous/items"></a>**Items**: Refer to *[#/$defs/sequence_element](#%24defs/sequence_element)*.
 - <a id="%24defs/sequence_element"></a>**`sequence_element`** *(object)*: Cannot contain additional properties.
@@ -115,9 +115,9 @@
 - <a id="%24defs/tags"></a>**`tags`** *(array)*: A single modification which could consist of multiple definitions.
   - <a id="%24defs/tags/items"></a>**Items**
     - **Any of**
-      - <a id="%24defs/tags/items/anyOf/0"></a>
-      - <a id="%24defs/tags/items/anyOf/1"></a>
-      - <a id="%24defs/tags/items/anyOf/2"></a>
-      - <a id="%24defs/tags/items/anyOf/3"></a>
-      - <a id="%24defs/tags/items/anyOf/4"></a>
-      - <a id="%24defs/tags/items/anyOf/5"></a>
+      - <a id="%24defs/tags/items/anyOf/0"></a>: Refer to *[#/$defs/tag_accession](#%24defs/tag_accession)*.
+      - <a id="%24defs/tags/items/anyOf/1"></a>: Refer to *[#/$defs/tag_formula](#%24defs/tag_formula)*.
+      - <a id="%24defs/tags/items/anyOf/2"></a>: Refer to *[#/$defs/tag_glycan](#%24defs/tag_glycan)*.
+      - <a id="%24defs/tags/items/anyOf/3"></a>: Refer to *[#/$defs/tag_info](#%24defs/tag_info)*.
+      - <a id="%24defs/tags/items/anyOf/4"></a>: Refer to *[#/$defs/tag_mass](#%24defs/tag_mass)*.
+      - <a id="%24defs/tags/items/anyOf/5"></a>: Refer to *[#/$defs/tag_name](#%24defs/tag_name)*.
