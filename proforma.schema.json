@@ -208,8 +208,12 @@
         },
         "global_charge": {
             "anyOf": [
-                "integer",
-                "global_charge_carriers"
+                {
+                    "type": "integer"
+                },
+                {
+                    "$ref": "global_charge_carriers"
+                }
             ]
         },
         "global_charge_carriers": {
@@ -233,16 +237,26 @@
         },
         "modification": {
             "anyOf": [
-                "modification_ambiguous",
-                "modification_cross_linker",
-                "tags"
+                {
+                    "ref": "modification_ambiguous"
+                },
+                {
+                    "ref": "modification_cross_linker"
+                },
+                {
+                    "ref": "tags"
+                }
             ],
             "description": "A modification, could be ambiguous, cross-linked, or just a single modification (which might be defined multiple times)"
         },
         "modification_ambiguous": {
             "anyOf": [
-                "modification_ambiguous_primary",
-                "modification_ambiguous_secondary"
+                {
+                    "ref": "modification_ambiguous_primary"
+                },
+                {
+                    "ref": "modification_ambiguous_secondary"
+                }
             ]
         },
         "modification_ambiguous_primary": {
@@ -382,9 +396,15 @@
         },
         "sequence": {
             "anyOf": [
-                "sequence_ambiguous",
-                "sequence_element",
-                "sequence_region"
+                {
+                    "ref": "sequence_ambiguous"
+                },
+                {
+                    "ref": "sequence_element"
+                },
+                {
+                    "ref": "sequence_region"
+                }
             ],
             "description": "A region in a peptide sequence"
         },
@@ -519,12 +539,24 @@
             "description": "A single modification which could consist of multiple definitions",
             "items": {
                 "anyOf": [
-                    "tag_accession",
-                    "tag_formula",
-                    "tag_glycan",
-                    "tag_info",
-                    "tag_mass",
-                    "tag_name"
+                    {
+                        "ref": "tag_accession"
+                    },
+                    {
+                        "ref": "tag_formula"
+                    },
+                    {
+                        "ref": "tag_glycan"
+                    },
+                    {
+                        "ref": "tag_info"
+                    },
+                    {
+                        "ref": "tag_mass"
+                    },
+                    {
+                        "ref": "tag_name"
+                    }
                 ]
             },
             "type": "array"
