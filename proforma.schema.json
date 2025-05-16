@@ -1,0 +1,692 @@
+{
+    "$defs": {
+        "amino_acid": {
+            "description": "An amino acid including unconventional ones (U/O) and ambiguous ones (X/J/B/Z)",
+            "enum": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+                "F",
+                "G",
+                "H",
+                "I",
+                "J",
+                "K",
+                "L",
+                "M",
+                "N",
+                "O",
+                "P",
+                "Q",
+                "R",
+                "S",
+                "T",
+                "U",
+                "V",
+                "W",
+                "X",
+                "Y",
+                "Z"
+            ]
+        },
+        "charged_formula": {
+            "additionalProperties": "false",
+            "description": "A formula that can be charged, expressed in ProForma as Formula:C2H6:z+2",
+            "properties": {
+                "charge": {
+                    "description": "The charge state for this formula",
+                    "type": "integer"
+                },
+                "formula": {
+                    "$ref": "#/$defs/formula"
+                }
+            },
+            "required": [
+                "formula"
+            ],
+            "type": "object"
+        },
+        "CV": {
+            "description": "One of the five supported controlled vocabularies",
+            "enum": [
+                "Unimod",
+                "PSI-MOD",
+                "RESID",
+                "GNOme",
+                "XL-MOD"
+            ]
+        },
+        "element": {
+            "description": "All elements",
+            "enum": [
+                "He",
+                "Li",
+                "Be",
+                "Ne",
+                "Na",
+                "Mg",
+                "Al",
+                "Si",
+                "Cl",
+                "Ar",
+                "Ca",
+                "Sc",
+                "Ti",
+                "Cr",
+                "Mn",
+                "Fe",
+                "Co",
+                "Ni",
+                "Cu",
+                "Zn",
+                "Ga",
+                "Ge",
+                "As",
+                "Se",
+                "Br",
+                "Kr",
+                "Rb",
+                "Sr",
+                "Zr",
+                "Nb",
+                "Mo",
+                "Tc",
+                "Ru",
+                "Rh",
+                "Pd",
+                "Ag",
+                "Cd",
+                "In",
+                "Sn",
+                "Sb",
+                "Te",
+                "Xe",
+                "Cs",
+                "Ba",
+                "La",
+                "Ce",
+                "Pr",
+                "Nd",
+                "Pm",
+                "Sm",
+                "Eu",
+                "Gd",
+                "Tb",
+                "Dy",
+                "Ho",
+                "Er",
+                "Tm",
+                "Yb",
+                "Lu",
+                "Hf",
+                "Ta",
+                "Re",
+                "Os",
+                "Ir",
+                "Pt",
+                "Au",
+                "Hg",
+                "Tl",
+                "Pb",
+                "Bi",
+                "Po",
+                "At",
+                "Rn",
+                "Fr",
+                "Ra",
+                "Ac",
+                "Th",
+                "Pa",
+                "Np",
+                "Pu",
+                "Am",
+                "Cm",
+                "Bk",
+                "Cf",
+                "Es",
+                "Fm",
+                "Md",
+                "No",
+                "Lr",
+                "Rf",
+                "Db",
+                "Sg",
+                "Bh",
+                "Hs",
+                "Mt",
+                "Ds",
+                "Rg",
+                "Cn",
+                "Nh",
+                "Fl",
+                "Mc",
+                "Lv",
+                "Ts",
+                "Og",
+                "U",
+                "W",
+                "I",
+                "Y",
+                "V",
+                "K",
+                "S",
+                "B",
+                "C",
+                "N",
+                "O",
+                "F",
+                "H",
+                "P"
+            ]
+        },
+        "formula": {
+            "description": "A molecular formula",
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "element": {
+                        "$ref": "#/$defs/element"
+                    },
+                    "isotope": {
+                        "$ref": "#/$defs/positive_integer",
+                        "description": "Nucleon count"
+                    },
+                    "occurance": {
+                        "description": "The number of times this part occurs",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "element",
+                    "occurance"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "global_charge": {
+            "anyOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "$ref": "#/$defs/global_charge_carriers"
+                }
+            ]
+        },
+        "global_charge_carriers": {
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "charged_formula": {
+                        "$ref": "#/$defs/charged_formula"
+                    },
+                    "occurance": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "charged_formula",
+                    "occurance"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "modification": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/modification_ambiguous"
+                },
+                {
+                    "$ref": "#/$defs/modification_cross_linker"
+                },
+                {
+                    "$ref": "#/$defs/tags"
+                }
+            ],
+            "description": "A modification, could be ambiguous, cross-linked, or just a single modification (which might be defined multiple times)"
+        },
+        "modification_ambiguous": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/modification_ambiguous_primary"
+                },
+                {
+                    "$ref": "#/$defs/modification_ambiguous_secondary"
+                }
+            ]
+        },
+        "modification_ambiguous_primary": {
+            "additionalProperties": false,
+            "description": "The primary definition of an ambiguous modification",
+            "properties": {
+                "comkp": {
+                    "description": "ColocaliseModificationsOfKnownPosition: this controls if this modification of unknown position can be placed on a location where a placed modification is located. By default this is not allowed.",
+                    "type": "bool"
+                },
+                "comup": {
+                    "description": "ColocaliseModificationsOfUnknownPosition: this control if this modification of unknown position can coexist at the same location as any other modifications of unknown position. By default this is not allowed.",
+                    "type": "bool"
+                },
+                "label": {
+                    "description": "The part after the #",
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "limit": {
+                    "$ref": "#/$defs/positive_integer",
+                    "description": "The maximal number of this modification of unknown position on one position. If this value is not specified a default value of 1 is used. This setting can only be applied on modifications of unknown position with a specified occurrence"
+                },
+                "position": {
+                    "description": "A list of positions where this modification is allowed. The positions are written the same as global modifications",
+                    "items": {
+                        "$ref": "#/$defs/position_rule"
+                    },
+                    "type": "array"
+                },
+                "score": {
+                    "description": "The score for this location of this ambiguous modification",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "tags": {
+                    "$ref": "#/$defs/tags"
+                }
+            },
+            "required": [
+                "label",
+                "tags"
+            ],
+            "type": "object"
+        },
+        "modification_ambiguous_secondary": {
+            "additionalProperties": false,
+            "description": "A reference to an ambiguous modification",
+            "properties": {
+                "label": {
+                    "description": "The part after the #",
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "score": {
+                    "description": "The score for this location of this ambiguous modification",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                }
+            },
+            "required": [
+                "label"
+            ],
+            "type": "object"
+        },
+        "modification_cross_linker": {
+            "additionalProperties": false,
+            "description": "A cross-linked modification, if the tags are missing this is a reuse of a modification that should be defined in another place, if the label is missing this indicates that this is a #BRANCH, and not a #XL<name>",
+            "properties": {
+                "label": {
+                    "description": "The part after the #XL, or if this is a #BRANCH this entire property is missing",
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/$defs/tags"
+                }
+            },
+            "type": "object"
+        },
+        "monosaccharide": {
+            "description": "A monosaccharide",
+            "enum": [
+                "Sulfate",
+                "Phosphate",
+                "Fuc",
+                "NeuAc",
+                "NeuGc",
+                "Neu5Ac",
+                "Neu5Gc",
+                "Neu",
+                "D-Hex",
+                "en,A-Hex",
+                "A-Hex",
+                "HexNAc",
+                "S",
+                "HexNAc",
+                "HexNS",
+                "HexS",
+                "HexP",
+                "HexN",
+                "Hex",
+                "Sug",
+                "Tri",
+                "Tet",
+                "Pen",
+                "Hep",
+                "Oct",
+                "Non",
+                "Dec"
+            ]
+        },
+        "position_rule": {
+            "additionalProperties": false,
+            "properties": {
+                "amino_acid": {
+                    "$ref": "#/$defs/amino_acid"
+                },
+                "terminal": {
+                    "enum": [
+                        "Anywhere",
+                        "NTerm",
+                        "CTerm"
+                    ]
+                }
+            },
+            "required": [
+                "terminal"
+            ],
+            "type": "object"
+        },
+        "positive_integer": {
+            "inclusiveMinimum": 0,
+            "type": "integer"
+        },
+        "sequence": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/sequence_ambiguous"
+                },
+                {
+                    "$ref": "#/$defs/sequence_element"
+                },
+                {
+                    "$ref": "#/$defs/sequence_region"
+                }
+            ],
+            "description": "A region in a peptide sequence"
+        },
+        "sequence_ambiguous": {
+            "items": {
+                "$ref": "#/$defs/sequence_element"
+            },
+            "type": "array"
+        },
+        "sequence_element": {
+            "additionalProperties": false,
+            "properties": {
+                "amino_acid": {
+                    "$ref": "#/$defs/amino_acid"
+                },
+                "modifications": {
+                    "items": {
+                        "$ref": "#/$defs/modification"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "amino_acid"
+            ],
+            "type": "object"
+        },
+        "sequence_region": {
+            "additionalProperties": false,
+            "properties": {
+                "modifications": {
+                    "items": {
+                        "$ref": "#/$defs/modification"
+                    },
+                    "type": "array"
+                },
+                "sequence": {
+                    "items": {
+                        "$ref": "#/$defs/sequence_element"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "sequence",
+                "modifications"
+            ],
+            "type": "object"
+        },
+        "tag_accession": {
+            "additionalProperties": false,
+            "description": "The accession for a modification",
+            "properties": {
+                "accession": {
+                    "description": "The accession number, or for GNOme and RESID the string",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "cv": {
+                    "$ref": "#/$defs/CV"
+                }
+            },
+            "required": [
+                "accession",
+                "cv"
+            ],
+            "type": "object"
+        },
+        "tag_formula": {
+            "$ref": "#/$defs/charged_formula",
+            "description": "A Formula:xxx modification"
+        },
+        "tag_glycan": {
+            "description": "A glycan composition modification",
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "monosaccharide": {
+                        "$ref": "#/$defs/monosaccharide"
+                    },
+                    "occurance": {
+                        "description": "The number of times this part occurs",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "monosaccharide",
+                    "occurance"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "tag_info": {
+            "description": "A INFO tag modification",
+            "type": "string"
+        },
+        "tag_mass": {
+            "additionalProperties": false,
+            "description": "A mass modification",
+            "properties": {
+                "cv": {
+                    "$ref": "#/$defs/CV"
+                },
+                "mass": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "mass"
+            ],
+            "type": "object"
+        },
+        "tag_name": {
+            "additionalProperties": false,
+            "description": "A named modification",
+            "properties": {
+                "cv": {
+                    "$ref": "#/$defs/CV"
+                },
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "tags": {
+            "description": "A single modification which could consist of multiple definitions",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/tag_accession"
+                    },
+                    {
+                        "$ref": "#/$defs/tag_formula"
+                    },
+                    {
+                        "$ref": "#/$defs/tag_glycan"
+                    },
+                    {
+                        "$ref": "#/$defs/tag_info"
+                    },
+                    {
+                        "$ref": "#/$defs/tag_mass"
+                    },
+                    {
+                        "$ref": "#/$defs/tag_name"
+                    }
+                ]
+            },
+            "type": "array"
+        }
+    },
+    "$id": "https://raw.githubusercontent.com/douweschulte/ebnf-helper/master/proforma.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Describe compound peptidoform ion attributes",
+    "properties": {
+        "fixed_modifications": {
+            "items": {
+                "additionalProperties": false,
+                "description": "A fixed modification",
+                "properties": {
+                    "modification": {
+                        "$ref": "#/$defs/tags",
+                        "description": "Fixed modifications cannot be cross-linked or ambiguous"
+                    },
+                    "position_rules": {
+                        "items": {
+                            "$ref": "#/$defs/position_rule"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "modification"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "isotope_replacement": {
+            "items": {
+                "additionalProperties": false,
+                "description": "A global isotope replacement, 'D' is also allowed to be written as a shortcut, but this is encoded as 2H",
+                "properties": {
+                    "element": {
+                        "$ref": "#/$defs/element"
+                    },
+                    "isotope": {
+                        "$ref": "#/$defs/positive_integer",
+                        "description": "Nucleon count"
+                    }
+                },
+                "required": [
+                    "isotope",
+                    "element"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "name": {
+            "description": "The compound peptidoform ion name, expressed with (>>>name) in ProForma 2.1",
+            "type": "string"
+        },
+        "peptidoform_ions": {
+            "items": {
+                "additionalProperties": false,
+                "description": "A peptidoform ion",
+                "properties": {
+                    "charge": {
+                        "$ref": "#/$defs/global_charge"
+                    },
+                    "name": {
+                        "description": "The peptidoform ion name, expressed with (>>name) in ProForma 2.1",
+                        "type": "string"
+                    },
+                    "peptidoforms": {
+                        "items": {
+                            "additionalProperties": false,
+                            "description": "A Peptidoform",
+                            "properties": {
+                                "c_term_modifications": {
+                                    "items": {
+                                        "$ref": "#/$defs/modification"
+                                    },
+                                    "type": "array"
+                                },
+                                "labile_modifications": {
+                                    "description": "Labile modifications cannot be cross-linked or ambiguous",
+                                    "items": {
+                                        "$ref": "#/$defs/tags"
+                                    },
+                                    "type": "array"
+                                },
+                                "n_term_modifications": {
+                                    "items": {
+                                        "$ref": "#/$defs/modification"
+                                    },
+                                    "type": "array"
+                                },
+                                "name": {
+                                    "description": "The peptidoform name, expressed with (>name) in ProForma 2.1",
+                                    "type": "string"
+                                },
+                                "sequence": {
+                                    "items": {
+                                        "$ref": "#/$defs/sequence"
+                                    },
+                                    "type": "array"
+                                },
+                                "unlocalised_modifications": {
+                                    "items": {
+                                        "$ref": "#/$defs/modification_ambiguous"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "sequence"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "peptidoforms"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        }
+    },
+    "required": [
+        "peptidoform_ions"
+    ],
+    "title": "HUPO-PSI ProForma specification",
+    "type": "object"
+}
