@@ -19,7 +19,7 @@ trait Generate {
 
 impl Generate for DefinitionList {
     fn generate(&self, buffer: &mut String, rng: &mut StdRng, syntax: &Syntax) {
-        self.0[rng.gen_range(0..self.0.len())].generate(buffer, rng, syntax);
+        self.0[rng.random_range(0..self.0.len())].generate(buffer, rng, syntax);
     }
 }
 
@@ -44,15 +44,15 @@ impl Generate for SyntacticTerm {
                 SyntacticPrimary::TerminalString(_, text) => write!(buffer, "{}", text).unwrap(),
                 SyntacticPrimary::SpecialSequence(_, text) => write!(buffer, "{}", text).unwrap(),
                 SyntacticPrimary::OptionalSequence(_, def) => {
-                    if rng.gen() {
+                    if rng.random() {
                         def.generate(buffer, rng, syntax)
                     }
                 }
                 SyntacticPrimary::GroupedSequence(_, def) => {
-                    def.0[rng.gen_range(0..def.0.len())].generate(buffer, rng, syntax);
+                    def.0[rng.random_range(0..def.0.len())].generate(buffer, rng, syntax);
                 }
                 SyntacticPrimary::RepeatedSequence(_, def) => {
-                    for _ in 0..rng.gen_range(0..3) {
+                    for _ in 0..rng.random_range(0..3) {
                         def.generate(buffer, rng, syntax)
                     }
                 }

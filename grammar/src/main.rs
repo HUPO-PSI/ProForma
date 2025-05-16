@@ -1,4 +1,4 @@
-use std::{io::Read, process::exit};
+use std::process::exit;
 
 use colored::Colorize;
 use ebnf::{

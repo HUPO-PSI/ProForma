@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-ebnf = { git = "https://github.com/torao/ebnf" }
-toml = "0.8.12"
-colored = "2.1"
-rand = "0.8.5"
+ebnf = { git = "https://github.com/torao/ebnf", rev = "0b67abd4070d92c2c294f19352f4e2519b09203a" }
+toml = "0.8"
+colored = "3"
+rand = "0.9"
