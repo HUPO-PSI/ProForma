@@ -9,8 +9,9 @@ This format specification represents the consensus for the standard representati
 ## Use cases supported (with examples)
 The ProForma notation is a string of characters that represent linearly one or more peptidoform/proteoform primary structures with possibilities to link peptidic chains together. It is not meant to represent secondary or tertiary structures. 
 
-##### Canonical [IUPAC amino acids](http://publications.iupac.org/pac/1984/pdf/5605x0595.pdf)
+##### Canonical [IUPAC amino acids](http://publications.iupac.org/pac/1984/pdf/5605x0595.pdf) and [ambiguous/unusual amino acids](https://www.insdc.org/submitting-standards/feature-table/#7.4.3)
 * `EMEVEESPEK`
+* `VAEJNPSNGGTT` (J indicates either I or L)
 ##### PTMs using common ontologies or controlled vocabularies (e.g. [Unimod](http://www.unimod.org/), [PSI-MOD](https://www.ebi.ac.uk/ols/ontologies/mod), and [RESID](https://proteininformationresource.org/resid/))
 * `EM[Oxidation]EVEES[UNIMOD:21]PEK`
 * `EM[L-methionine sulfoxide]EVEES[MOD:00046]PEK`
@@ -39,3 +40,8 @@ The ProForma notation is a string of characters that represent linearly one or m
 ##### Additional user-supplied information and multi-valued tags
 * `ELV[info:AnyString]IS`
 * `ELV[+11.9784|info:suspected frobinylation]IS`
+##### Defined charges, or charge cariers (ProForma extension see section 7.1)
+* `VAEINPSNGGTT/2`
+##### Chimeric spectra (ProForma extension see section 7.2)
+* `VAEINPSNGGTT+FNEKFKGGKATJ`
+* `[iTRAQ4plex]-EMEVNESPEK-[Methyl]+[Phospho]?EMEVTSESPEK`
