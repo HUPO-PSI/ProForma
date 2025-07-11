@@ -76,7 +76,11 @@
 - <a id="%24defs/modification_cross_linker"></a>**`modification_cross_linker`** *(object)*: A cross-linked modification, if the tags are missing this is a reuse of a modification that should be defined in another place, if the label is missing this indicates that this is a #BRANCH, and not a #XL<name>. Cannot contain additional properties.
   - <a id="%24defs/modification_cross_linker/properties/label"></a>**`label`** *(string)*: The part after the #XL, or if this is a #BRANCH this entire property is missing. Length must be at least 1.
   - <a id="%24defs/modification_cross_linker/properties/tags"></a>**`tags`**: Refer to *[#/$defs/tags](#%24defs/tags)*.
-- <a id="%24defs/monosaccharide"></a>**`monosaccharide`**: A monosaccharide. Must be one of: `["Sulfate", "Phosphate", "Fuc", "NeuAc", "NeuGc", "Neu5Ac", "Neu5Gc", "Neu", "D-Hex", "en,A-Hex", "A-Hex", "HexNAc", "S", "HexNAc", "HexNS", "HexS", "HexP", "HexN", "Hex", "Sug", "Tri", "Tet", "Pen", "Hep", "Oct", "Non", "Dec"]`.
+- <a id="%24defs/monosaccharide"></a>**`monosaccharide`**
+  - **Any of**
+    - <a id="%24defs/monosaccharide/anyOf/0"></a>: Refer to *[#/$defs/monosaccharide_name](#%24defs/monosaccharide_name)*.
+    - <a id="%24defs/monosaccharide/anyOf/1"></a>: Refer to *[#/$defs/charged_formula](#%24defs/charged_formula)*.
+- <a id="%24defs/monosaccharide_name"></a>**`monosaccharide_name`**: A named monosaccharide. Must be one of: `["aHex", "Dec", "dHex", "en,aHex", "Fuc", "Hep", "Hex", "HexN", "HexNAc", "HexNAcS", "HexNS", "HexP", "HexS", "Neu", "Neu5Ac", "Neu5Gc", "NeuAc", "NeuGc", "Non", "Oct", "Pen", "Phosphate", "S", "Sug", "Sulfate", "Tet", "Tri"]`.
 - <a id="%24defs/position_rule"></a>**`position_rule`** *(object)*: Cannot contain additional properties.
   - <a id="%24defs/position_rule/properties/amino_acid"></a>**`amino_acid`**: Refer to *[#/$defs/amino_acid](#%24defs/amino_acid)*.
   - <a id="%24defs/position_rule/properties/terminal"></a>**`terminal`**: Must be one of: `["Anywhere", "NTerm", "CTerm"]`.
