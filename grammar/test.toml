@@ -280,7 +280,11 @@ positive = [
 negative = ["/1/1", "/1[Na]"]
 
 [modGlycan]
-positive = ["Glycan:Hex2HexNAc"]
+positive = [
+    "Glycan:Hex2HexNAc",
+    "Glycan:{C8H14N1O5:z+1}1Hex2",
+    "Glycan:{C8H13[15N1]O5}1Hex2",
+]
 
 [NAMETEXT]
 positive = ["I>>I", "I(III)"]

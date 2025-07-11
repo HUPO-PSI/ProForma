@@ -43,7 +43,8 @@ modFormula = F,O,R,M,U,L,A,":", formula, [CHARGE];
 formula = WS, formulaElement, {WS, formulaElement}, WS;
 formulaElement = ("[", WS, INT, WS, ELEMENT, WS, [SIGNEDINT], WS, "]")|(ELEMENT, WS, [SIGNEDINT]);
 
-modGlycan = G,L,Y,C,A,N,":", MONOSACCHARIDE, [INT], WS, {MONOSACCHARIDE, [INT], WS};
+modGlycan = G,L,Y,C,A,N,":", monosaccharide, [INT], WS, {monosaccharide, [INT], WS};
+monosaccharide = ("{",formula, [CHARGE],"}") | MONOSACCHARIDE;
 
 (* Defined to need a sign, which is not needed from a parser perspective *)
 modMass = [modMassCV, ":"], SIGN, NUMBER;
@@ -73,10 +74,9 @@ modLabelAmbiguous = ALPHANUMERIC, {ALPHANUMERIC}, ["(", SIGNEDNUMBER, ")"];
 occuranceSpecifier = "^", INT;
 CHARGE = ":", Z, SIGNEDINT;
 
-MONOSACCHARIDE = (S,U,L,F,A,T,E)|(P,H,O,S,P,H,A,T,E)|(F,U,C)|(N,E,U,A,C)|(N,E,U,G,C)|(N,E,U,"5",A,C)|(N,E,U,"5",G,C)
-                |(N,E,U)|(D,"-",H,E,X)|(E,N,",",A,"-",H,E,X)|(A,"-",H,E,X)|(H,E,X,N,A,C,"(",S,")")|(H,E,X,N,A,C)
-                |(H,E,X,N,S)|(H,E,X,S)|(H,E,X,P)|(H,E,X,N)|(H,E,X)|(S,U,G)|(T,R,I)|(T,E,T)|(P,E,N)|(H,E,P)|(O,C,T)
-                |(N,O,N)|(D,E,C);
+MONOSACCHARIDE = (S,U,L,F,A,T,E)|(P,H,O,S,P,H,A,T,E)|(F,U,C)|(N,E,U,A,C)|(N,E,U,G,C)|(N,E,U)|(D,H,E,X)
+                |(E,N,",",A,H,E,X)|(A,H,E,X)|(H,E,X,N,A,C,S)|(H,E,X,N,A,C)|(H,E,X,N,S)|(H,E,X,S)|(H,E,X,P)|(H,E,X,N)
+                |(H,E,X)|(S,U,G)|(T,R,I)|(T,E,T)|(P,E,N)|(H,E,P)|(O,C,T)|(N,O,N)|(D,E,C);
 
 ELEMENT = (H,E)|(L,I)|(B,E)|(N,E)|(N,A)|(M,G)|(A,L)|(S,I)|(C,L)|(A,R)|(C,A)|(S,C)|(T,I)|(C,R)|(M,N)|(F,E)|(C,O)|(N,I)
          |(C,U)|(Z,N)|(G,A)|(G,E)|(A,S)|(S,E)|(B,R)|(K,R)|(R,B)|(S,R)|(Z,R)|(N,B)|(M,O)|(T,C)|(R,U)|(R,H)|(P,D)|(A,G)
