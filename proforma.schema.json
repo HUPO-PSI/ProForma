@@ -340,35 +340,45 @@
             "type": "object"
         },
         "monosaccharide": {
-            "description": "A monosaccharide",
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/monosaccharide_name"
+                },
+                {
+                    "$ref": "#/$defs/charged_formula"
+                }
+            ]
+        },
+        "monosaccharide_name": {
+            "description": "A named monosaccharide",
             "enum": [
-                "Sulfate",
-                "Phosphate",
+                "aHex",
+                "Dec",
+                "dHex",
+                "en,aHex",
                 "Fuc",
-                "NeuAc",
-                "NeuGc",
+                "Hep",
+                "Hex",
+                "HexN",
+                "HexNAc",
+                "HexNAcS",
+                "HexNS",
+                "HexP",
+                "HexS",
+                "Neu",
                 "Neu5Ac",
                 "Neu5Gc",
-                "Neu",
-                "D-Hex",
-                "en,A-Hex",
-                "A-Hex",
-                "HexNAc",
-                "S",
-                "HexNAc",
-                "HexNS",
-                "HexS",
-                "HexP",
-                "HexN",
-                "Hex",
-                "Sug",
-                "Tri",
-                "Tet",
-                "Pen",
-                "Hep",
-                "Oct",
+                "NeuAc",
+                "NeuGc",
                 "Non",
-                "Dec"
+                "Oct",
+                "Pen",
+                "Phosphate",
+                "S",
+                "Sug",
+                "Sulfate",
+                "Tet",
+                "Tri"
             ]
         },
         "position_rule": {
