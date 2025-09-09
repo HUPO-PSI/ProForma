@@ -1,0 +1,12 @@
+[package]
+name = "ebnf-helper"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ebnf = { git = "https://github.com/torao/ebnf", rev = "0b67abd4070d92c2c294f19352f4e2519b09203a" }
+toml = "0.8"
+colored = "3"
+rand = "0.9"
