@@ -6,6 +6,8 @@ The PSI has developed a format called [PEFF (PSI Extended FASTA Format)](http://
 
 This format specification represents the consensus for the standard representation of proteoforms and peptidoforms.  This notation aims to support the main proteomics approaches, including bottom-up (focused on peptides/peptidoforms) and top-down (focused on proteins/proteoforms) approaches.
 
+<img width="964" height="462" alt="Image" src="https://github.com/user-attachments/assets/aa8f8999-7211-4304-8409-fac4a45dda65" />
+
 ## Use cases supported (with examples)
 The ProForma notation is a string of characters that represent linearly one or more peptidoform/proteoform primary structures with possibilities to link peptidic chains together. It is not meant to represent secondary or tertiary structures. 
 
