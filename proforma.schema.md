@@ -43,7 +43,7 @@
   - <a id="%24defs/formula/items"></a>**Items** *(object)*: Cannot contain additional properties.
     - <a id="%24defs/formula/items/properties/element"></a>**`element`**: Refer to *[#/$defs/element](#%24defs/element)*.
     - <a id="%24defs/formula/items/properties/isotope"></a>**`isotope`**: Nucleon count. Refer to *[#/$defs/positive_integer](#%24defs/positive_integer)*.
-    - <a id="%24defs/formula/items/properties/occurance"></a>**`occurance`** *(integer, required)*: The number of times this part occurs.
+    - <a id="%24defs/formula/items/properties/occurrence"></a>**`occurrence`** *(integer, required)*: The number of times this part occurs.
 - <a id="%24defs/global_charge"></a>**`global_charge`**
   - **Any of**
     - <a id="%24defs/global_charge/anyOf/0"></a>*integer*
@@ -51,7 +51,7 @@
 - <a id="%24defs/global_charge_carriers"></a>**`global_charge_carriers`** *(array)*
   - <a id="%24defs/global_charge_carriers/items"></a>**Items** *(object)*: Cannot contain additional properties.
     - <a id="%24defs/global_charge_carriers/items/properties/charged_formula"></a>**`charged_formula`**: Refer to *[#/$defs/charged_formula](#%24defs/charged_formula)*.
-    - <a id="%24defs/global_charge_carriers/items/properties/occurance"></a>**`occurance`** *(number, required)*
+    - <a id="%24defs/global_charge_carriers/items/properties/occurrence"></a>**`occurrence`** *(number, required)*
 - <a id="%24defs/modification"></a>**`modification`**: A modification, could be ambiguous, cross-linked, or just a single modification (which might be defined multiple times).
   - **Any of**
     - <a id="%24defs/modification/anyOf/0"></a>: Refer to *[#/$defs/modification_ambiguous](#%24defs/modification_ambiguous)*.
@@ -108,7 +108,7 @@
 - <a id="%24defs/tag_glycan"></a>**`tag_glycan`** *(array)*: A glycan composition modification.
   - <a id="%24defs/tag_glycan/items"></a>**Items** *(object)*: Cannot contain additional properties.
     - <a id="%24defs/tag_glycan/items/properties/monosaccharide"></a>**`monosaccharide`**: Refer to *[#/$defs/monosaccharide](#%24defs/monosaccharide)*.
-    - <a id="%24defs/tag_glycan/items/properties/occurance"></a>**`occurance`** *(integer, required)*: The number of times this part occurs.
+    - <a id="%24defs/tag_glycan/items/properties/occurrence"></a>**`occurrence`** *(integer, required)*: The number of times this part occurs.
 - <a id="%24defs/tag_info"></a>**`tag_info`** *(string)*: A INFO tag modification.
 - <a id="%24defs/tag_mass"></a>**`tag_mass`** *(object)*: A mass modification. Cannot contain additional properties.
   - <a id="%24defs/tag_mass/properties/cv"></a>**`cv`**: Refer to *[#/$defs/CV](#%24defs/CV)*.

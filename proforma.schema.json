@@ -193,14 +193,14 @@
                         "$ref": "#/$defs/positive_integer",
                         "description": "Nucleon count"
                     },
-                    "occurance": {
+                    "occurrence": {
                         "description": "The number of times this part occurs",
                         "type": "integer"
                     }
                 },
                 "required": [
                     "element",
-                    "occurance"
+                    "occurrence"
                 ],
                 "type": "object"
             },
@@ -223,13 +223,13 @@
                     "charged_formula": {
                         "$ref": "#/$defs/charged_formula"
                     },
-                    "occurance": {
+                    "occurrence": {
                         "type": "number"
                     }
                 },
                 "required": [
                     "charged_formula",
-                    "occurance"
+                    "occurrence"
                 ],
                 "type": "object"
             },
@@ -495,14 +495,14 @@
                     "monosaccharide": {
                         "$ref": "#/$defs/monosaccharide"
                     },
-                    "occurance": {
+                    "occurrence": {
                         "description": "The number of times this part occurs",
                         "type": "integer"
                     }
                 },
                 "required": [
                     "monosaccharide",
-                    "occurance"
+                    "occurrence"
                 ],
                 "type": "object"
             },
