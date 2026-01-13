@@ -106,28 +106,28 @@ property_value: has_monoisotopic_mass "282.095082153" xsd:float
 
 [Term]
 id: MONO:70565C17
-name: sulfate
-def: "sulfate"
+name: Sulfate
+def: "Sulfate"
 synonym: "S" EXACT
 property_value: has_chemical_formula "H0O3S1" xsd:string
 property_value: has_monoisotopic_mass "79.9568148587" xsd:float
 
 [Term]
 id: MONO:095E7DD0
-name: phosphate
-def: "phosphate"
+name: Phosphate
+def: "Phosphate"
 synonym: "P" EXACT
 property_value: has_chemical_formula "H1O3P1" xsd:string
 property_value: has_monoisotopic_mass "79.9663305208" xsd:float
 
 [Term]
 id: MONO:0C4F1FA5
-name: d-Hex
-def: "d-Hex"
+name: dHex
+def: "dHex"
 synonym: "RES\n1b:x-HEX-x:x|-1:d\nLIN\n" EXACT
 synonym: "?-?-d-Hexx" EXACT
 synonym: "uxxxdh" EXACT
-synonym: "dHex" EXACT
+synonym: "d-Hex" EXACT
 property_value: has_chemical_formula "C6H10O4" xsd:string
 property_value: has_monoisotopic_mass "146.057908799" xsd:float
 
@@ -145,11 +145,11 @@ property_value: has_monoisotopic_mass "146.057908799" xsd:float
 
 [Term]
 id: MONO:3E923C03
-name: en,a-Hex
-def: "en,a-Hex"
+name: en,aHex
+def: "en,aHex"
 synonym: "RES\n1b:x-HEX-x:x|-1:en|-1:a\nLIN\n" EXACT
 synonym: "?-?-en,a-Hexx" EXACT
-synonym: "en,aHex" EXACT
+synonym: "en,a-Hex" EXACT
 synonym: "enHexA" EXACT
 property_value: has_chemical_formula "C6H6O5" xsd:string
 property_value: has_monoisotopic_mass "158.02152329" xsd:float
@@ -167,11 +167,11 @@ property_value: has_monoisotopic_mass "161.068807836" xsd:float
 
 [Term]
 id: MONO:0996D6B5
-name: a-Hex
-def: "a-Hex"
+name: aHex
+def: "aHex"
 synonym: "RES\n1b:x-HEX-x:x|-1:a\nLIN\n" EXACT
 synonym: "?-?-a-Hexx" EXACT
-synonym: "aHex" EXACT
+synonym: "a-Hex" EXACT
 synonym: "HexA" EXACT
 property_value: has_chemical_formula "C6H8O6" xsd:string
 property_value: has_monoisotopic_mass "176.032087974" xsd:float
@@ -234,8 +234,8 @@ property_value: has_monoisotopic_mass "249.084851823" xsd:float
 
 [Term]
 id: MONO:2D673195
-name: HexNAc(S)
-def: "HexNAc(S)"
+name: HexNAcS
+def: "HexNAcS"
 synonym: "RES\n1b:x-HEX-x:x\n2s:n-acetyl\n3s:sulfate\nLIN\n1:1d(-1+1)2n\n2:1o(-1+1)3n\n" EXACT
 synonym: "?-?-HexxNAc(S)" EXACT
 synonym: "uxxxxh_?*NCC/3=O_?*OSO/3=O/3=O" EXACT
@@ -245,24 +245,24 @@ property_value: has_monoisotopic_mass "283.036187378" xsd:float
 
 [Term]
 id: MONO:2A76C372
-name: Neu5Ac
-def: "Neu5Ac"
+name: NeuAc
+def: "NeuAc"
 synonym: "RES\n1b:x-dgro-dgal-NON-x:x|1:a|2:keto|3:d\n2s:n-acetyl\nLIN\n1:1d(5+1)2n\n" EXACT
 synonym: "?-D-Neux5NAc" EXACT
 synonym: "Aud21122h_5*NCC/3=O" EXACT
 synonym: "Sialic Acid" EXACT
-synonym: "NeuAc" EXACT
+synonym: "Neu5Ac" EXACT
 property_value: has_chemical_formula "C11H17N1O8" xsd:string
 property_value: has_monoisotopic_mass "291.095416506" xsd:float
 
 [Term]
 id: MONO:4DB3A9FC
-name: Neu5Gc
-def: "Neu5Gc"
+name: NeuGc
+def: "NeuGc"
 synonym: "RES\n1b:x-dgro-dgal-NON-x:x|1:a|2:keto|3:d\n2s:n-glycolyl\nLIN\n1:1d(5+1)2n\n" EXACT
 synonym: "?-D-Neux5NGc" EXACT
 synonym: "Aud21122h_5*NCCO/3=O" EXACT
-synonym: "NeuGc" EXACT
+synonym: "Neu5Gc" EXACT
 property_value: has_chemical_formula "C11H17N1O9" xsd:string
 property_value: has_monoisotopic_mass "307.090331126" xsd:float
 
