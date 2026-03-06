@@ -1,6 +1,6 @@
 (* Main entry point *)
-proforma = compoundPeptidoformIon;
-compoundPeptidoformIon = [nameCompoundPeptidoformIon], {modGlobal}, {peptidoformIon, "+"}, peptidoformIon;
+proforma = peptidoformIonSet;
+peptidoformIonSet = [namePeptidoformIonSet], {modGlobal}, {peptidoformIon, "+"}, peptidoformIon;
 
 (* Global modifications *)
 modGlobal = "<", modGlobalOption, ">";
@@ -25,7 +25,7 @@ ambiguousAminoAcid = "(?", sequenceElement, {sequenceElement}, ")";
 modRange = "(", sequenceElement, {sequenceElement}, ")", mod, {mod};
 sequenceElement = aminoAcid, {modOrLabel};
 aminoAcid = LETTER;
-nameCompoundPeptidoformIon = "(>>>", NAMETEXT, ")";
+namePeptidoformIonSet = "(>>>", NAMETEXT, ")";
 namePeptidoformIon = "(>>", NAMETEXT, ")";
 namePeptidoform = "(>", NAMETEXT, ")";
 

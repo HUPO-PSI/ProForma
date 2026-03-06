@@ -573,7 +573,7 @@
     "$id": "https://raw.githubusercontent.com/douweschulte/ebnf-helper/master/proforma.schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": false,
-    "description": "Describe compound peptidoform ion attributes",
+    "description": "Describe peptidoform ion set attributes",
     "properties": {
         "fixed_modifications": {
             "items": {
@@ -620,7 +620,7 @@
             "type": "array"
         },
         "name": {
-            "description": "The compound peptidoform ion name, expressed with (>>>name) in ProForma 2.1",
+            "description": "The peptidoform ion set name, expressed with (>>>name) in ProForma 2.1",
             "type": "string"
         },
         "peptidoform_ions": {

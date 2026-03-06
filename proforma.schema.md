@@ -1,6 +1,6 @@
 # HUPO-PSI ProForma specification
 
-*Describe compound peptidoform ion attributes*
+*Describe peptidoform ion set attributes*
 
 ## Properties
 
@@ -13,7 +13,7 @@
   - <a id="properties/isotope_replacement/items"></a>**Items** *(object)*: A global isotope replacement, 'D' is also allowed to be written as a shortcut, but this is encoded as 2H. Cannot contain additional properties.
     - <a id="properties/isotope_replacement/items/properties/element"></a>**`element`**: Refer to *[#/$defs/element](#%24defs/element)*.
     - <a id="properties/isotope_replacement/items/properties/isotope"></a>**`isotope`**: Nucleon count. Refer to *[#/$defs/positive_integer](#%24defs/positive_integer)*.
-- <a id="properties/name"></a>**`name`** *(string)*: The compound peptidoform ion name, expressed with (>>>name) in ProForma 2.1.
+- <a id="properties/name"></a>**`name`** *(string)*: The peptidoform ion set name, expressed with (>>>name) in ProForma 2.1.
 - <a id="properties/peptidoform_ions"></a>**`peptidoform_ions`** *(array, required)*
   - <a id="properties/peptidoform_ions/items"></a>**Items** *(object)*: A peptidoform ion. Cannot contain additional properties.
     - <a id="properties/peptidoform_ions/items/properties/charge"></a>**`charge`**: Refer to *[#/$defs/global_charge](#%24defs/global_charge)*.
