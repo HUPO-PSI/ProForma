@@ -1,5 +1,5 @@
 format-version: 1.2
-date: 2020-09-13 21:35:23.314000
+date: 2026-03-12 22:19:41.717032
 remark: namespace: MONO
 remark: creator: Joshua Klein <jaklein <-at-> bu.edu>
 ontology: MONO
@@ -17,7 +17,7 @@ property_value: has_chemical_formula "C2H2O1" xsd:string
 property_value: has_monoisotopic_mass "42.0105646837" xsd:float
 
 [Term]
-id: MONO:6BAAE1B1
+id: MONO:94551E4F
 name: Tri
 def: "A generic monosaccharide with 3 backbone carbons"
 synonym: "RES\n1b:x-TRI-x:x\nLIN\n" EXACT
@@ -36,7 +36,7 @@ synonym: "?-?-Tetx" EXACT
 synonym: "uxxh" EXACT
 synonym: "Tet" EXACT
 property_value: has_chemical_formula "C4H6O3" xsd:string
-property_value: has_monoisotopic_mass "102.031694051" xsd:float
+property_value: has_monoisotopic_mass "102.0316940511" xsd:float
 
 [Term]
 id: MONO:1559E00E
@@ -47,10 +47,10 @@ synonym: "?-?-Penx" EXACT
 synonym: "uxxxh" EXACT
 synonym: "Pen" EXACT
 property_value: has_chemical_formula "C5H8O4" xsd:string
-property_value: has_monoisotopic_mass "132.042258735" xsd:float
+property_value: has_monoisotopic_mass "132.0422587348" xsd:float
 
 [Term]
-id: MONO:7AB4EB73
+id: MONO:854B148D
 name: Hex
 def: "A generic monosaccharide with 6 backbone carbons"
 synonym: "RES\n1b:x-HEX-x:x\nLIN\n" EXACT
@@ -58,7 +58,7 @@ synonym: "?-?-Hexx" EXACT
 synonym: "uxxxxh" EXACT
 synonym: "Hex" EXACT
 property_value: has_chemical_formula "C6H10O5" xsd:string
-property_value: has_monoisotopic_mass "162.052823418" xsd:float
+property_value: has_monoisotopic_mass "162.0528234185" xsd:float
 
 [Term]
 id: MONO:077F5949
@@ -69,10 +69,10 @@ synonym: "?-?-Hepx" EXACT
 synonym: "uxxxxxh" EXACT
 synonym: "Hep" EXACT
 property_value: has_chemical_formula "C7H12O6" xsd:string
-property_value: has_monoisotopic_mass "192.063388102" xsd:float
+property_value: has_monoisotopic_mass "192.0633881022" xsd:float
 
 [Term]
-id: MONO:6FD0344F
+id: MONO:902FCBB1
 name: Oct
 def: "A generic monosaccharide with 8 backbone carbons"
 synonym: "RES\n1b:x-OCT-x:x\nLIN\n" EXACT
@@ -80,7 +80,7 @@ synonym: "?-?-Octx" EXACT
 synonym: "uxxxxxxh" EXACT
 synonym: "Oct" EXACT
 property_value: has_chemical_formula "C8H14O7" xsd:string
-property_value: has_monoisotopic_mass "222.073952786" xsd:float
+property_value: has_monoisotopic_mass "222.0739527859" xsd:float
 
 [Term]
 id: MONO:2CC56422
@@ -91,10 +91,10 @@ synonym: "?-?-Nonx" EXACT
 synonym: "uxh43344h" EXACT
 synonym: "Non" EXACT
 property_value: has_chemical_formula "C9H16O8" xsd:string
-property_value: has_monoisotopic_mass "252.08451747" xsd:float
+property_value: has_monoisotopic_mass "252.0845174696" xsd:float
 
 [Term]
-id: MONO:2F3DD9C9
+id: MONO:D0C22637
 name: Dec
 def: "A generic monosaccharide with 10 backbone carbons"
 synonym: "RES\n1b:x-DEC-x:x\nLIN\n" EXACT
@@ -102,34 +102,18 @@ synonym: "?-?-Decx" EXACT
 synonym: "uxxxxxxxxh" EXACT
 synonym: "Dec" EXACT
 property_value: has_chemical_formula "C10H18O9" xsd:string
-property_value: has_monoisotopic_mass "282.095082153" xsd:float
-
-[Term]
-id: MONO:70565C17
-name: sulfate
-def: "sulfate"
-synonym: "S" EXACT
-property_value: has_chemical_formula "H0O3S1" xsd:string
-property_value: has_monoisotopic_mass "79.9568148587" xsd:float
-
-[Term]
-id: MONO:095E7DD0
-name: phosphate
-def: "phosphate"
-synonym: "P" EXACT
-property_value: has_chemical_formula "H1O3P1" xsd:string
-property_value: has_monoisotopic_mass "79.9663305208" xsd:float
+property_value: has_monoisotopic_mass "282.09508215330004" xsd:float
 
 [Term]
 id: MONO:0C4F1FA5
-name: d-Hex
+name: dHex
 def: "d-Hex"
 synonym: "RES\n1b:x-HEX-x:x|-1:d\nLIN\n" EXACT
 synonym: "?-?-d-Hexx" EXACT
 synonym: "uxxxdh" EXACT
-synonym: "dHex" EXACT
+synonym: "d-Hex" EXACT
 property_value: has_chemical_formula "C6H10O4" xsd:string
-property_value: has_monoisotopic_mass "146.057908799" xsd:float
+property_value: has_monoisotopic_mass "146.0579087989" xsd:float
 
 [Term]
 id: MONO:61947BA4
@@ -139,20 +123,18 @@ synonym: "RES\n1b:x-lgal-HEX-x:x|6:d\nLIN\n" EXACT
 synonym: "?-L-Fucx" EXACT
 synonym: "u1221m" EXACT
 synonym: "Fucose" EXACT
-synonym: "Fuc" EXACT
 property_value: has_chemical_formula "C6H10O4" xsd:string
-property_value: has_monoisotopic_mass "146.057908799" xsd:float
+property_value: has_monoisotopic_mass "146.0579087989" xsd:float
 
 [Term]
-id: MONO:3E923C03
-name: en,a-Hex
+id: MONO:C16DC3FD
+name: en,aHex
 def: "en,a-Hex"
 synonym: "RES\n1b:x-HEX-x:x|-1:en|-1:a\nLIN\n" EXACT
 synonym: "?-?-en,a-Hexx" EXACT
-synonym: "en,aHex" EXACT
-synonym: "enHexA" EXACT
+synonym: "en,a-Hex" EXACT
 property_value: has_chemical_formula "C6H6O5" xsd:string
-property_value: has_monoisotopic_mass "158.02152329" xsd:float
+property_value: has_monoisotopic_mass "158.0215232902" xsd:float
 
 [Term]
 id: MONO:14908737
@@ -161,20 +143,18 @@ def: "HexN"
 synonym: "RES\n1b:x-HEX-x:x\n2s:amino\nLIN\n1:1d(-1+1)2n\n" EXACT
 synonym: "?-?-HexxN" EXACT
 synonym: "uxxxxh_?*N" EXACT
-synonym: "HexN" EXACT
 property_value: has_chemical_formula "C6H11N1O4" xsd:string
-property_value: has_monoisotopic_mass "161.068807836" xsd:float
+property_value: has_monoisotopic_mass "161.0688078358" xsd:float
 
 [Term]
 id: MONO:0996D6B5
-name: a-Hex
+name: aHex
 def: "a-Hex"
 synonym: "RES\n1b:x-HEX-x:x|-1:a\nLIN\n" EXACT
 synonym: "?-?-a-Hexx" EXACT
-synonym: "aHex" EXACT
-synonym: "HexA" EXACT
+synonym: "a-Hex" EXACT
 property_value: has_chemical_formula "C6H8O6" xsd:string
-property_value: has_monoisotopic_mass "176.032087974" xsd:float
+property_value: has_monoisotopic_mass "176.0320879739" xsd:float
 
 [Term]
 id: MONO:5E288A08
@@ -183,31 +163,56 @@ def: "HexNAc"
 synonym: "RES\n1b:x-HEX-x:x\n2s:n-acetyl\nLIN\n1:1d(-1+1)2n\n" EXACT
 synonym: "?-?-HexxNAc" EXACT
 synonym: "uxxxxh_?*NCC/3=O" EXACT
-synonym: "HexNAc" EXACT
 property_value: has_chemical_formula "C8H13N1O5" xsd:string
-property_value: has_monoisotopic_mass "203.07937252" xsd:float
+property_value: has_monoisotopic_mass "203.0793725195" xsd:float
 
 [Term]
-id: MONO:695E0092
+id: MONO:D8F957CD
+name: Kdo
+def: "Kdo"
+synonym: "RES\n1b:x-dman-OCT-x:x|1:a|2:keto|3:d\nLIN\n" EXACT
+synonym: "?-D-Kdox" EXACT
+synonym: "Aud1122h" EXACT
+property_value: has_chemical_formula "C8H12O7" xsd:string
+property_value: has_monoisotopic_mass "220.0583027218" xsd:float
+
+[Term]
+id: MONO:70565C17
+name: sulfate
+def: "sulfate"
+synonym: "S" EXACT
+synonym: "Sulfo" EXACT
+property_value: has_chemical_formula "C8H12O7" xsd:string
+property_value: has_monoisotopic_mass "220.0583027218" xsd:float
+
+[Term]
+id: MONO:F6A18230
+name: phosphate
+def: "phosphate"
+synonym: "P" EXACT
+synonym: "Phospho" EXACT
+property_value: has_chemical_formula "C8H12O7" xsd:string
+property_value: has_monoisotopic_mass "220.0583027218" xsd:float
+
+[Term]
+id: MONO:96A1FF6E
 name: HexNS
 def: "HexNS"
 synonym: "RES\n1b:x-HEX-x:x\n2s:n-sulfate\nLIN\n1:1d(-1+1)2n\n" EXACT
 synonym: "?-?-HexxNS" EXACT
 synonym: "uxxxxh_?*NSO/3=O/3=O" EXACT
-synonym: "HexNS" EXACT
 property_value: has_chemical_formula "C6H11N1O7S1" xsd:string
-property_value: has_monoisotopic_mass "241.025622694" xsd:float
+property_value: has_monoisotopic_mass "241.0256226945" xsd:float
 
 [Term]
-id: MONO:252FAE19
+id: MONO:DAD051E7
 name: HexS
 def: "HexS"
 synonym: "RES\n1b:x-HEX-x:x\n2s:sulfate\nLIN\n1:1o(-1+1)2n\n" EXACT
 synonym: "?-?-HexxS" EXACT
 synonym: "uxxxxh_?*OSO/3=O/3=O" EXACT
-synonym: "HexS" EXACT
 property_value: has_chemical_formula "C6H10O8S1" xsd:string
-property_value: has_monoisotopic_mass "242.009638277" xsd:float
+property_value: has_monoisotopic_mass "242.0096382772" xsd:float
 
 [Term]
 id: MONO:27AA9097
@@ -216,21 +221,31 @@ def: "HexP"
 synonym: "RES\n1b:x-HEX-x:x\n2s:phosphate\nLIN\n1:1o(-1+1)2n\n" EXACT
 synonym: "?-?-HexxP" EXACT
 synonym: "uxxxxh_?*OPO/3O/3=O" EXACT
-synonym: "HexP" EXACT
 property_value: has_chemical_formula "C6H11O8P1" xsd:string
-property_value: has_monoisotopic_mass "242.019153939" xsd:float
+property_value: has_monoisotopic_mass "242.0191539393" xsd:float
 
 [Term]
-id: MONO:513BD0C1
+id: MONO:AEC42F3F
 name: Neu
 def: "Neu"
 synonym: "RES\n1b:x-dgro-dgal-NON-x:x|1:a|2:keto|3:d\n2s:amino\nLIN\n1:1d(5+1)2n\n" EXACT
 synonym: "?-D-Neux" EXACT
 synonym: "Aud21122h_5*N" EXACT
 synonym: "Neuraminic acid" EXACT
-synonym: "Neu" EXACT
 property_value: has_chemical_formula "C9H15N1O7" xsd:string
-property_value: has_monoisotopic_mass "249.084851823" xsd:float
+property_value: has_monoisotopic_mass "249.0848518228" xsd:float
+
+[Term]
+id: MONO:4B3DE5D5
+name: Kdn
+def: "Kdn"
+synonym: "RES\n1b:x-dgro-dgal-NON-x:x|1:a|2:keto|3:d\nLIN\n" EXACT
+synonym: "?-D-Kdnx" EXACT
+synonym: "Aud21122h" EXACT
+synonym: "2-Keto-3-deoxynanonic acid" EXACT
+synonym: "KDN" EXACT
+property_value: has_chemical_formula "C9H14O8" xsd:string
+property_value: has_monoisotopic_mass "250.0688674055" xsd:float
 
 [Term]
 id: MONO:2D673195
@@ -239,31 +254,31 @@ def: "HexNAc(S)"
 synonym: "RES\n1b:x-HEX-x:x\n2s:n-acetyl\n3s:sulfate\nLIN\n1:1d(-1+1)2n\n2:1o(-1+1)3n\n" EXACT
 synonym: "?-?-HexxNAc(S)" EXACT
 synonym: "uxxxxh_?*NCC/3=O_?*OSO/3=O/3=O" EXACT
-synonym: "HexNAc(S)" EXACT
 property_value: has_chemical_formula "C8H13N1O8S1" xsd:string
-property_value: has_monoisotopic_mass "283.036187378" xsd:float
+property_value: has_monoisotopic_mass "283.0361873782" xsd:float
 
 [Term]
 id: MONO:2A76C372
-name: Neu5Ac
+name: NeuAc
 def: "Neu5Ac"
 synonym: "RES\n1b:x-dgro-dgal-NON-x:x|1:a|2:keto|3:d\n2s:n-acetyl\nLIN\n1:1d(5+1)2n\n" EXACT
 synonym: "?-D-Neux5NAc" EXACT
 synonym: "Aud21122h_5*NCC/3=O" EXACT
+synonym: "Neu5Ac" EXACT
 synonym: "Sialic Acid" EXACT
 synonym: "NeuAc" EXACT
 property_value: has_chemical_formula "C11H17N1O8" xsd:string
-property_value: has_monoisotopic_mass "291.095416506" xsd:float
+property_value: has_monoisotopic_mass "291.0954165065" xsd:float
 
 [Term]
-id: MONO:4DB3A9FC
-name: Neu5Gc
+id: MONO:B24C5604
+name: NeuGc
 def: "Neu5Gc"
 synonym: "RES\n1b:x-dgro-dgal-NON-x:x|1:a|2:keto|3:d\n2s:n-glycolyl\nLIN\n1:1d(5+1)2n\n" EXACT
 synonym: "?-D-Neux5NGc" EXACT
 synonym: "Aud21122h_5*NCCO/3=O" EXACT
+synonym: "Neu5Gc" EXACT
 synonym: "NeuGc" EXACT
 property_value: has_chemical_formula "C11H17N1O9" xsd:string
-property_value: has_monoisotopic_mass "307.090331126" xsd:float
-
+property_value: has_monoisotopic_mass "307.0903311260" xsd:float
 
