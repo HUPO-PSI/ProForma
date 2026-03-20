@@ -1,6 +1,6 @@
 (* Main entry point *)
-proforma = compoundPeptidoformIon;
-compoundPeptidoformIon = [nameCompoundPeptidoformIon], {modGlobal}, {peptidoformIon, "+"}, peptidoformIon;
+proforma = peptidoformIonSet;
+peptidoformIonSet = [namePeptidoformIonSet], {modGlobal}, {peptidoformIon, "+"}, peptidoformIon;
 
 (* Global modifications *)
 modGlobal = "<", modGlobalOption, ">";
@@ -10,12 +10,12 @@ modGlobalLocation = (C,"-",T,E,R,M, [":", aminoAcid]) | (N,"-",T,E,R,M, [":", am
 
 (* Peptidoform ion: a single entity that is at some point one molecule *)
 peptidoformIon = [namePeptidoformIon], {peptidoform, "//"}, peptidoform, [peptidoformCharge];
-peptidoformCharge = "/", (SIGNEDINT, | "[", adductIon, {",", adductIon}, "]");
-adductIon = formula, CHARGE, [occuranceSpecifier];
+peptidoformCharge = "/", (SIGNEDINT | "[", adductIon, {",", adductIon}, "]");
+adductIon = formula, CHARGE, [occurrenceSpecifier];
 
 (* Peptidoform: a single linear sequence of aminoacids *)
 peptidoform = [namePeptidoform], {globalModUnknownPos}, {modLabile}, [modNTerm], sequence, [modCTerm];
-globalModUnknownPos = mod, [occuranceSpecifier], {mod, [occuranceSpecifier]}, '?';
+globalModUnknownPos = mod, [occurrenceSpecifier], {mod, [occurrenceSpecifier]}, '?';
 modLabile = "{", modInternalDefined, "}";
 
 (* Main sequence elements *)
@@ -25,14 +25,14 @@ ambiguousAminoAcid = "(?", sequenceElement, {sequenceElement}, ")";
 modRange = "(", sequenceElement, {sequenceElement}, ")", mod, {mod};
 sequenceElement = aminoAcid, {modOrLabel};
 aminoAcid = LETTER;
-nameCompoundPeptidoformIon = "(>>>", NAMETEXT, ")";
+namePeptidoformIonSet = "(>>>", NAMETEXT, ")";
 namePeptidoformIon = "(>>", NAMETEXT, ")";
 namePeptidoform = "(>", NAMETEXT, ")";
 
-(* Modfications *)
+(* Modifications *)
 modOrLabel = mod | ("[", modLabel, "]");
 mod = "[", modInternal, "]";
-modUnknownPos = "[", modSingle, [modLabel], , "]";
+modUnknownPos = "[", modSingle, [modLabel], "]";
 unknownPosSetting = ("|",P,O,S,I,T,I,O,N,":", modGlobalLocation, {",", modGlobalLocation}) | ("|", L,I,M,I,T, ":", INT) | ("|", C,O,M,K,P) | ("|", C,O,M,U,P);
 modInternal = modSingle, [modLabel], {"|", modSingle, [modLabel]};
 modDefined = "[", modInternalDefined, "]";
@@ -41,14 +41,14 @@ modSingle = modFormula | modGlycan | modMass | modAccession| info | modName;
 
 modFormula = F,O,R,M,U,L,A,":", formula, [CHARGE];
 formula = WS, formulaElement, {WS, formulaElement}, WS;
-formulaElement = ("[", WS, INT, WS, ELEMENT, WS, [SIGNEDINT], WS, "]")|(ELEMENT, WS, [SIGNEDINT]);
+formulaElement = ("[", WS, INT, WS, ELEMENT, WS, [SIGNEDINT], WS, "]") | (ELEMENT, WS, [SIGNEDINT]);
 
 modGlycan = G,L,Y,C,A,N,":", monosaccharide, [INT], WS, {monosaccharide, [INT], WS};
 monosaccharide = ("{",formula, [CHARGE],"}") | MONOSACCHARIDE;
 
 (* Defined to need a sign, which is not needed from a parser perspective *)
 modMass = [modMassCV, ":"], SIGN, NUMBER;
-modMassCV =  CVAbbreviation | (O,B,S);
+modMassCV = CVAbbreviation | (O,B,S);
 CVAbbreviation = U|M|R|X|G;
 
 (* An accession number which is a full integer expect when GNO is used *)
@@ -71,20 +71,20 @@ modLabelBranch = B,R,A,N,C,H;
 modLabelAmbiguous = ALPHANUMERIC, {ALPHANUMERIC}, ["(", SIGNEDNUMBER, ")"];
 
 (* Reused syntactic elements *)
-occuranceSpecifier = "^", INT;
+occurrenceSpecifier = "^", INT;
 CHARGE = ":", Z, SIGNEDINT;
 
 MONOSACCHARIDE = (S,U,L,F,A,T,E)|(P,H,O,S,P,H,A,T,E)|(F,U,C)|(N,E,U,A,C)|(N,E,U,G,C)|(N,E,U)|(D,H,E,X)
                 |(E,N,",",A,H,E,X)|(A,H,E,X)|(H,E,X,N,A,C,S)|(H,E,X,N,A,C)|(H,E,X,N,S)|(H,E,X,S)|(H,E,X,P)|(H,E,X,N)
                 |(H,E,X)|(S,U,G)|(T,R,I)|(T,E,T)|(P,E,N)|(H,E,P)|(O,C,T)|(N,O,N)|(D,E,C);
 
-ELEMENT = (H,E)|(L,I)|(B,E)|(N,E)|(N,A)|(M,G)|(A,L)|(S,I)|(C,L)|(A,R)|(C,A)|(S,C)|(T,I)|(C,R)|(M,N)|(F,E)|(C,O)|(N,I)
-         |(C,U)|(Z,N)|(G,A)|(G,E)|(A,S)|(S,E)|(B,R)|(K,R)|(R,B)|(S,R)|(Z,R)|(N,B)|(M,O)|(T,C)|(R,U)|(R,H)|(P,D)|(A,G)
-         |(C,D)|(I,N)|(S,N)|(S,B)|(T,E)|(X,E)|(C,S)|(B,A)|(L,A)|(C,E)|(P,R)|(N,D)|(P,M)|(S,M)|(E,U)|(G,D)|(T,B)|(D,Y)
-         |(H,O)|(E,R)|(T,M)|(Y,B)|(L,U)|(H,F)|(T,A)|(R,E)|(O,S)|(I,R)|(P,T)|(A,U)|(H,G)|(T,L)|(P,B)|(B,I)|(P,O)|(A,T)
-         |(R,N)|(F,R)|(R,A)|(A,C)|(T,H)|(P,A)|(N,P)|(P,U)|(A,M)|(C,M)|(B,K)|(C,F)|(E,S)|(F,M)|(M,D)|(N,O)|(L,R)|(R,F)
-         |(D,B)|(S,G)|(B,H)|(H,S)|(M,T)|(D,S)|(R,G)|(C,N)|(N,H)|(F,L)|(M,C)|(L,V)|(T,S)|(O,G)|U|W|I|Y|V|K|S|B|C|N|O|F
-         |H|P;
+ELEMENT = "He"|"Li"|"Be"|"Ne"|"Na"|"Mg"|"Al"|"Si"|"Cl"|"Ar"|"Ca"|"Sc"|"Ti"|"Cr"|"Mn"|"Fe"|"Co"|"Ni"
+         |"Cu"|"Zn"|"Ga"|"Ge"|"As"|"Se"|"Br"|"Kr"|"Rb"|"Sr"|"Zr"|"Nb"|"Mo"|"Tc"|"Ru"|"Rh"|"Pd"|"Ag"
+         |"Cd"|"In"|"Sn"|"Sb"|"Te"|"Xe"|"Cs"|"Ba"|"La"|"Ce"|"Pr"|"Nd"|"Pm"|"Sm"|"Eu"|"Gd"|"Tb"|"Dy"
+         |"Ho"|"Er"|"Tm"|"Yb"|"Lu"|"Hf"|"Ta"|"Re"|"Os"|"Ir"|"Pt"|"Au"|"Hg"|"Tl"|"Pb"|"Bi"|"Po"|"At"
+         |"Rn"|"Fr"|"Ra"|"Ac"|"Th"|"Pa"|"Np"|"Pu"|"Am"|"Cm"|"Bk"|"Cf"|"Es"|"Fm"|"Md"|"No"|"Lr"|"Rf"
+         |"Db"|"Sg"|"Bh"|"Hs"|"Mt"|"Ds"|"Rg"|"Cn"|"Nh"|"Fl"|"Mc"|"Lv"|"Ts"|"Og"|"U"|"W"|"I"|"Y"|"V"
+         |"K"|"S"|"B"|"C"|"N"|"O"|"F"|"H"|"P";
 
 DIGIT = "0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9";
 INT = DIGIT, {DIGIT};

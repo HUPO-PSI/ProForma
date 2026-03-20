@@ -193,14 +193,14 @@
                         "$ref": "#/$defs/positive_integer",
                         "description": "Nucleon count"
                     },
-                    "occurance": {
+                    "occurrence": {
                         "description": "The number of times this part occurs",
                         "type": "integer"
                     }
                 },
                 "required": [
                     "element",
-                    "occurance"
+                    "occurrence"
                 ],
                 "type": "object"
             },
@@ -223,13 +223,13 @@
                     "charged_formula": {
                         "$ref": "#/$defs/charged_formula"
                     },
-                    "occurance": {
+                    "occurrence": {
                         "type": "number"
                     }
                 },
                 "required": [
                     "charged_formula",
-                    "occurance"
+                    "occurrence"
                 ],
                 "type": "object"
             },
@@ -368,8 +368,6 @@
                 "Neu",
                 "NeuAc",
                 "NeuGc",
-                "NeuAc",
-                "NeuGc",
                 "Non",
                 "Oct",
                 "Pen",
@@ -495,14 +493,14 @@
                     "monosaccharide": {
                         "$ref": "#/$defs/monosaccharide"
                     },
-                    "occurance": {
+                    "occurrence": {
                         "description": "The number of times this part occurs",
                         "type": "integer"
                     }
                 },
                 "required": [
                     "monosaccharide",
-                    "occurance"
+                    "occurrence"
                 ],
                 "type": "object"
             },
@@ -575,7 +573,7 @@
     "$id": "https://raw.githubusercontent.com/douweschulte/ebnf-helper/master/proforma.schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": false,
-    "description": "Describe compound peptidoform ion attributes",
+    "description": "Describe peptidoform ion set attributes",
     "properties": {
         "fixed_modifications": {
             "items": {
@@ -622,7 +620,7 @@
             "type": "array"
         },
         "name": {
-            "description": "The compound peptidoform ion name, expressed with (>>>name) in ProForma 2.1",
+            "description": "The peptidoform ion set name, expressed with (>>>name) in ProForma 2.1",
             "type": "string"
         },
         "peptidoform_ions": {
