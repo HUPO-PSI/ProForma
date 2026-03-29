@@ -1,26 +1,28 @@
-import io
-import sys
-import datetime
-import zlib
+from datetime import datetime
+from typing import TypedDict
 
+import fastobo
 import glypy
-from glypy.structure.glycan_composition import from_iupac_lite, to_iupac_lite
-from glypy.io import glycoct, iupac, wurcs
-from glypy.composition import formula
-from glypy.io.nomenclature import synonyms
-
-from psims.controlled_vocabulary import (
-    obo,
-    ControlledVocabulary,
-    obj_to_xsdtype,
+from fastobo.id import PrefixedIdent, UnprefixedIdent
+from fastobo.pv import LiteralPropertyValue
+from fastobo.syn import Synonym
+from fastobo.term import (
+    DefClause,
+    IsAClause,
+    NameClause,
+    PropertyValueClause,
+    SynonymClause,
+    TermFrame,
 )
+from glypy.composition import formula
+from glypy.io import glycoct, iupac, wurcs
+from glypy.io.nomenclature import synonyms
+from glypy.structure.glycan_composition import from_iupac_lite, to_iupac_lite
 
-def make_accession(mono):
-    src = str(mono) + formula(mono.total_composition())
-    byte_src = src.encode('ascii')
-    sys.stderr.write(f"{src} {zlib.crc32(byte_src)}\n")
-    chk = hex(abs(zlib.crc32(byte_src))).upper()[2:].zfill(8)
-    return "MONO:%s" % chk
+
+def make_accession(mono: glypy.MonosaccharideResidue, label: str, counter: int):
+    chk = str(counter).zfill(8)
+    return PrefixedIdent("MONO", chk)
 
 
 def to_wurcs(mono):
@@ -30,45 +32,6 @@ def to_wurcs(mono):
     return t
 
 
-parser = obo.OBOParser(io.BytesIO())
-parser.term_type = 'term'
-
-seen = set()
-for lab, scls in glypy.structure.SuperClass:
-    if scls.value and scls.value < 11 and scls not in seen:
-        seen.add(scls)
-
-supercls_entities = sorted(seen)
-supercls_to_id = {}
-for t in supercls_entities:
-    if t.name != "x":
-        mono = from_iupac_lite(t.name.title())
-        mono_tp = {
-            "id": make_accession(mono),
-            "name": to_iupac_lite(mono),
-            "def": "A generic monosaccharide with %d backbone carbons"
-            % (mono.superclass.value),
-            "synonyms": [
-                dialect(mono)
-                for dialect in [glycoct.dumps, iupac.dumps, to_wurcs, to_iupac_lite]
-            ],
-            "property_value": [
-                'has_chemical_formula "%s" %s'
-                % (
-                    formula(mono.total_composition()),
-                    obj_to_xsdtype(str(formula(mono.total_composition()))),
-                ),
-                'has_monoisotopic_mass "%s" %s'
-                % (mono.mass(), obj_to_xsdtype(mono.mass())),
-            ],
-        }
-        supercls_to_id[mono.superclass] = mono_tp["id"]
-        parser.current_term = mono_tp
-        parser.pack()
-
-seen = set()
-handled_monos = set()
-
 def to_format(dialect, mono):
     try:
         return dialect(mono)
@@ -76,122 +39,255 @@ def to_format(dialect, mono):
         return None
 
 
-for label in [
-    "dHex",
-    "Fuc",
-    "HexN",
-    "HexNAc",
-    "HexS",
-    "HexP",
-    "HexNAc(S)",
-    "NeuAc",
-    "NeuGc",
-    "Neu",
-    "HexNS",
-    "aHex",
-    "en,aHex",
-    "Kdn",
-    "Kdo",
-]:
-    try:
-        mono = from_iupac_lite(label)
-        mono_tp = {
-            "id": make_accession(mono),
-            "name": label,
-            "def": str(mono),
-            "synonyms": list(
-                filter(
-                    bool,
-                    [
-                        to_format(dialect, mono)
-                        for dialect in [
-                            glycoct.dumps,
-                            iupac.dumps,
-                            to_wurcs,
-                            to_iupac_lite,
-                        ]
-                        if to_format(dialect, mono) != label
-                    ],
-                )
-            )
-            + [
-                s for s in synonyms.monosaccharides.get(str(mono), []) if s != str(mono)
+def make_generic_defn(scls: glypy.structure.SuperClass) -> str:
+    return "A generic monosaccharide with %d backbone carbons" % scls.value
+
+
+class RecordType(TypedDict):
+    name: str
+    synonyms: list[str] | None
+    defn: str | None
+    tp: str | None
+    parent: str | None
+
+    @classmethod
+    def from_name(cls, name: str):
+        if isinstance(name, dict):
+            return name | {"tp": "monosaccharide"}
+        return {"name": name, "synonyms": [], "tp": "monosaccharide", "defn": None}
+
+    @classmethod
+    def from_superclass(cls, supercls: glypy.structure.SuperClass):
+        return RecordType(
+            {
+                "name": supercls.name.title(),
+                "synonyms": [],
+                "tp": "superclass",
+                "defn": make_generic_defn(supercls),
+            }
+        )
+
+    @classmethod
+    def from_substituent(cls, subst_name: str, synonyms: list[str]):
+        return RecordType(
+            {
+                "name": subst_name,
+                "synonyms": synonyms,
+                "defn": None,
+                "tp": "substituent",
+            }
+        )
+
+def make_supercls_entry(record: RecordType, counter: int):
+    name = record["name"]
+    mono = from_iupac_lite(name)
+    defn = record["defn"]
+    synonyms_of = list(
+        filter(
+            bool,
+            [
+                to_format(dialect, mono)
+                for dialect in [
+                    glycoct.dumps,
+                    iupac.dumps,
+                    to_wurcs,
+                    to_iupac_lite,
+                ]
+                if to_format(dialect, mono) != name
             ],
-            "property_value": [
-                f'has_chemical_formula "{formula(mono.total_composition())}" {obj_to_xsdtype(str(formula(mono.total_composition())))}',
-                f'has_monoisotopic_mass "{mono.mass():0.10f}" {obj_to_xsdtype(mono.mass())}',
-            ],
-        }
-        parser.current_term = mono_tp
-        parser.pack()
-    except iupac.IUPACError as err:
-        print(err, file=sys.stderr)
-
-for label, synonyms_ in [("sulfate", ["S", "Sulfo"]), ("phosphate", ["P", "Phospho"])]:
-    try:
-        subst = from_iupac_lite(label)
-        mono_tp = {
-            "id": make_accession(subst),
-            "name": str(subst).replace("@", ""),
-            "def": str(subst).replace("@", ""),
-            "synonyms": synonyms_,
-            "property_value": [
-                f'has_chemical_formula "{formula(mono.total_composition())}" {obj_to_xsdtype(str(formula(mono.total_composition())))}',
-                f'has_monoisotopic_mass "{mono.mass():0.10f}" {obj_to_xsdtype(mono.mass())}',
-            ],
-        }
-        parser.current_term = mono_tp
-        parser.pack()
-    except iupac.IUPACError as err:
-        print(err, file=sys.stderr)
-
-
-parser._connect_parents()
-parser._simplify_header_information()
-
-cv = ControlledVocabulary(parser.terms)
-
-def write_header(self, header, stream):
-    for key, value in header:
-        stream.write(("%s: %s\n" % (key, value)).encode('utf8'))
-    stream.write(b"\n")
-    stream.write(b"\n")
-
-
-def write_term(self, term, stream):
-    stream.write(
-        ('[Term]\nid: %s\nname: %s\ndef: "%s"\n' % (term.id, term.name, term.definition)).encode('utf8')
+        )
     )
-    #     for xref in term.get('xref', []):
-    #         stream.write("xref: ")
-    seen = set()
-    for syn in term.get("synonyms", []):
-        if syn in seen:
-            continue
-        seen.add(syn)
-        stream.write(('synonym: "%s" EXACT\n' % str(syn).replace("\n", "\\n")).encode('utf8'))
-    for prop in term.get("property_value", []):
-        stream.write(("property_value: %s\n" % prop).encode('utf8'))
-    stream.write(b"\n")
+
+    synonyms_of = [SynonymClause(Synonym(syn, "EXACT")) for syn in synonyms_of]
+
+    is_a = []
+    parent = record.get("parent")
+    if parent:
+        is_a.append(IsAClause(parent))
+
+    clauses = [
+        make_accession(mono, name, counter),
+        NameClause(name),
+        DefClause(defn if defn else str(mono)),
+        *is_a,
+        *synonyms_of,
+        PropertyValueClause(
+            LiteralPropertyValue(
+                UnprefixedIdent("has_chemical_formula"),
+                f"{formula(mono.total_composition())}",
+                PrefixedIdent("xsd", "string"),
+            )
+        ),
+        PropertyValueClause(
+            LiteralPropertyValue(
+                UnprefixedIdent("has_monoisotopic_mass"),
+                f"{mono.mass():0.10f}",
+                PrefixedIdent("xsd", "float"),
+            )
+        ),
+    ]
+    return TermFrame(clauses[0], clauses[1:])
 
 
-buff = io.BytesIO()
+def make_monosaccharide_entry(record: RecordType, counter: int):
+    name = record["name"]
+    mono = from_iupac_lite(name)
 
-header = [
-    ("format-version", "1.2"),
-    ("date", str(datetime.datetime.now())),
-    ("remark", "namespace: MONO"),
-    ("remark", "creator: Joshua Klein <jaklein <-at-> bu.edu>"),
-    ("ontology", "MONO"),
-]
+    synonyms_of = (
+        list(
+            filter(
+                bool,
+                [
+                    to_format(dialect, mono)
+                    for dialect in [
+                        glycoct.dumps,
+                        iupac.dumps,
+                        to_wurcs,
+                        to_iupac_lite,
+                    ]
+                    if to_format(dialect, mono) != name
+                ],
+            )
+        )
+        + [s for s in synonyms.monosaccharides.get(str(mono), []) if s != str(mono)]
+        + record.get("synonyms", [])
+    )
+
+    synonyms_of = [SynonymClause(Synonym(syn, "EXACT")) for syn in synonyms_of]
+
+    is_a = []
+    parent = record.get("parent")
+    if parent:
+        is_a.append(IsAClause(parent))
+
+    clauses = [
+        make_accession(mono, name, counter),
+        NameClause(name),
+        DefClause(record.get("defn") if record.get("defn") else str(mono)),
+        *is_a,
+        *synonyms_of,
+        PropertyValueClause(
+            LiteralPropertyValue(
+                UnprefixedIdent("has_chemical_formula"),
+                f"{formula(mono.total_composition())}",
+                PrefixedIdent("xsd", "string"),
+            )
+        ),
+        PropertyValueClause(
+            LiteralPropertyValue(
+                UnprefixedIdent("has_monoisotopic_mass"),
+                f"{mono.mass():0.10f}",
+                PrefixedIdent("xsd", "float"),
+            )
+        ),
+    ]
+    return TermFrame(clauses[0], clauses[1:])
 
 
-write_header(None, header, buff)
+def make_substituent_entry(record: RecordType, counter: int):
+    name = record["name"]
+    subst = from_iupac_lite(name)
 
-for key, term in sorted(
-    cv.items(),
-    key=lambda x: ("generic" not in x[1].definition, x[1].has_monoisotopic_mass),
-):
-    write_term(None, term, buff)
+    synonyms_of = [
+        SynonymClause(Synonym(syn, "EXACT")) for syn in record.get("synonyms", [])
+    ]
 
-sys.stdout.buffer.write(buff.getvalue())
+    clauses = [
+        make_accession(subst, name, counter),
+        NameClause(name),
+        DefClause(record.get("defn") if record.get("defn") else str(subst)[1:]),
+        *synonyms_of,
+        PropertyValueClause(
+            LiteralPropertyValue(
+                UnprefixedIdent("has_chemical_formula"),
+                f"{formula(subst.total_composition())}",
+                PrefixedIdent("xsd", "string"),
+            )
+        ),
+        PropertyValueClause(
+            LiteralPropertyValue(
+                UnprefixedIdent("has_monoisotopic_mass"),
+                f"{subst.mass():0.10f}",
+                PrefixedIdent("xsd", "float"),
+            )
+        ),
+    ]
+    return TermFrame(clauses[0], clauses[1:])
+
+
+def render(self: RecordType, counter: int):
+    if self["tp"] == "superclass":
+        return make_supercls_entry(self, counter)
+    elif self["tp"] == "monosaccharide":
+        return make_monosaccharide_entry(self, counter)
+    elif self["tp"] == "substituent":
+        return make_substituent_entry(self, counter)
+    else:
+        raise NotImplementedError()
+
+
+
+## CREATE INITIAL FROZEN ENTRIES, DO NOT MODIFY
+
+seen = set()
+for lab, scls in glypy.structure.SuperClass:
+    if scls.value and scls.value < 11 and scls not in seen:
+        seen.add(scls)
+
+supercls_entities = sorted(seen)
+supercls_recs = list(map(RecordType.from_superclass, supercls_entities))
+
+monosaccharide_recs = list(
+    map(
+        RecordType.from_name,
+        [
+            "dHex",
+            "Fuc",
+            "HexN",
+            "HexNAc",
+            "HexS",
+            "HexP",
+            "HexNAc(S)",
+            "NeuAc",
+            "NeuGc",
+            "Neu",
+            "HexNS",
+            {"name": "aHex", "synonyms": ["HexA"]},
+            {"name": "en,aHex", "synonyms": ["dHexA"]},
+            "Kdn",
+            "Kdo",
+        ],
+    )
+)
+
+
+substituent_recs = list(
+    map(
+        lambda x: RecordType.from_substituent(*x),
+        [("sulfate", ["S", "Sulfo"]), ("phosphate", ["P", "Phospho"])],
+    )
+)
+
+records = supercls_recs + monosaccharide_recs + substituent_recs
+
+## ADD NEW RECORDS HERE
+
+terms = []
+for i, record in enumerate(records):
+    term = render(record, i)
+    terms.append(term)
+
+
+
+header_recs = fastobo.header.HeaderFrame(
+    [
+        fastobo.header.FormatVersionClause("1.2"),
+        fastobo.header.DefaultNamespaceClause("MONO"),
+        fastobo.header.RemarkClause("creator: Joshua Klein <jaklein <-at-> bu.edu>"),
+        fastobo.header.DateClause(datetime.now()),
+        fastobo.header.OntologyClause("MONO"),
+    ]
+)
+
+doc = fastobo.doc.OboDoc(header_recs, terms)
+print(doc)
