@@ -5,7 +5,7 @@ peptidoformIonSet = [namePeptidoformIonSet], {modGlobal}, {peptidoformIon, "+"},
 (* Global modifications *)
 modGlobal = "<", modGlobalOption, ">";
 modGlobalOption = ISOTOPE | (modDefined, "@", modGlobalLocation, {",", modGlobalLocation});
-ISOTOPE = D | (INT, ELEMENT);
+ISOTOPE = D | T | (INT, ELEMENT);
 modGlobalLocation = (C,"-",T,E,R,M, [":", aminoAcid]) | (N,"-",T,E,R,M, [":", aminoAcid]) | aminoAcid; 
 
 (* Peptidoform ion: a single entity that is at some point one molecule *)
@@ -16,12 +16,12 @@ adductIon = formula, CHARGE, [occurrenceSpecifier];
 (* Peptidoform: a single linear sequence of aminoacids *)
 peptidoform = [namePeptidoform], {globalModUnknownPos}, {modLabile}, [modNTerm], sequence, [modCTerm];
 globalModUnknownPos = mod, [occurrenceSpecifier], {mod, [occurrenceSpecifier]}, '?';
-modLabile = "{", modInternalDefined, "}";
+modLabile = "{", modInternal, "}";
 
 (* Main sequence elements *)
 sequence = sequenceSection, {sequenceSection};
 sequenceSection = ambiguousAminoAcid | modRange | sequenceElement;
-ambiguousAminoAcid = "(?", sequenceElement, {sequenceElement}, ")";
+ambiguousAminoAcid = "(?", sequenceElement, {sequenceElement}, ")", {mod};
 modRange = "(", sequenceElement, {sequenceElement}, ")", mod, {mod};
 sequenceElement = aminoAcid, {modOrLabel};
 aminoAcid = LETTER;
@@ -32,12 +32,11 @@ namePeptidoform = "(>", NAMETEXT, ")";
 (* Modifications *)
 modOrLabel = mod | ("[", modLabel, "]");
 mod = "[", modInternal, "]";
-modUnknownPos = "[", modSingle, [modLabel], "]";
 unknownPosSetting = ("|",P,O,S,I,T,I,O,N,":", modGlobalLocation, {",", modGlobalLocation}) | ("|", L,I,M,I,T, ":", INT) | ("|", C,O,M,K,P) | ("|", C,O,M,U,P);
 modInternal = modSingle, [modLabel], {"|", modSingle, [modLabel]};
 modDefined = "[", modInternalDefined, "]";
 modInternalDefined = modSingle, {"|", modSingle};
-modSingle = modFormula | modGlycan | modMass | modAccession| info | modName;
+modSingle = modFormula | modGlycan | modMass | modAccession | info | modName;
 
 modFormula = F,O,R,M,U,L,A,":", formula, [CHARGE];
 formula = WS, formulaElement, {WS, formulaElement}, WS;
@@ -76,7 +75,7 @@ CHARGE = ":", Z, SIGNEDINT;
 
 MONOSACCHARIDE = (S,U,L,F,A,T,E)|(P,H,O,S,P,H,A,T,E)|(F,U,C)|(N,E,U,A,C)|(N,E,U,G,C)|(N,E,U)|(D,H,E,X)
                 |(E,N,",",A,H,E,X)|(A,H,E,X)|(H,E,X,N,A,C,S)|(H,E,X,N,A,C)|(H,E,X,N,S)|(H,E,X,S)|(H,E,X,P)|(H,E,X,N)
-                |(H,E,X)|(S,U,G)|(T,R,I)|(T,E,T)|(P,E,N)|(H,E,P)|(O,C,T)|(N,O,N)|(D,E,C);
+                |(H,E,X)|(S,U,G)|(T,R,I)|(T,E,T)|(P,E,N)|(H,E,P)|(O,C,T)|(N,O,N)|(D,E,C)|(K,D,O)|(K,D,N);
 
 ELEMENT = "He"|"Li"|"Be"|"Ne"|"Na"|"Mg"|"Al"|"Si"|"Cl"|"Ar"|"Ca"|"Sc"|"Ti"|"Cr"|"Mn"|"Fe"|"Co"|"Ni"
          |"Cu"|"Zn"|"Ga"|"Ge"|"As"|"Se"|"Br"|"Kr"|"Rb"|"Sr"|"Zr"|"Nb"|"Mo"|"Tc"|"Ru"|"Rh"|"Pd"|"Ag"
@@ -123,10 +122,11 @@ Z = "Z"|"z";
 LETTER = A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z;
 ALPHANUMERIC = LETTER|DIGIT;
 (* Not exhaustively listed all possible characters. Anything unicode graphic not '|', '#', '[', or ']' is possible, also an arbitrary number and nesting of internal brackets is allowed, but this EBNF grammar is limited in this capacity *)
-MODGRAPHICCHARACTER = ALPHANUMERIC|SIGN|" "|"?"|"."|","|"<"|">"|"{"|"}"|"("|")"|"_"|"="|":"|";"|"/"|"\\"|"'"|'"'|"*"|"~"|"`"|"@"|"$"|"%"|"^"|"&";
-MODTEXT = {MODGRAPHICCHARACTER}, {"[", {MODGRAPHICCHARACTER}, "]"}, {MODGRAPHICCHARACTER};
-NAMEGRAPHICCHARACTER = ALPHANUMERIC|SIGN|" "|"?"|"."|","|"<"|">"|"{"|"}"|"["|"]"|"_"|"="|":"|";"|"/"|"\\"|"'"|'"'|"*"|"~"|"`"|"@"|"$"|"%"|"^"|"&";
-STARTNAMEGRAPHICCHARACTER = ALPHANUMERIC|SIGN|" "|"?"|"."|","|"<"|"{"|"}"|"["|"]"|"_"|"="|":"|";"|"/"|"\\"|"'"|'"'|"*"|"~"|"`"|"@"|"$"|"%"|"^"|"&";
+MODGRAPHICCHARACTER = ALPHANUMERIC|SIGN|" "|"?"|"."|","|"<"|">"|"("|")"|"_"|"="|":"|";"|"/"|"\\"|"'"|'"'|"*"|"~"|"`"|"@"|"$"|"%"|"^"|"&";
+MODTEXT = {MODTEXTBRICK};
+MODTEXTBRICK = ("[", {MODTEXTBRICK}, "]") | ("{", {MODTEXTBRICK}, "}") | (MODGRAPHICCHARACTER, {MODGRAPHICCHARACTER});
+NAMEGRAPHICCHARACTER =STARTNAMEGRAPHICCHARACTER|">";
+STARTNAMEGRAPHICCHARACTER = ALPHANUMERIC|SIGN|" "|"?"|"."|","|"<"|"{"|"}"|"["|"]"|"_"|"="|":"|";"|"/"|"\\"|"'"|'"'|"*"|"~"|"`"|"@"|"$"|"%"|"^"|"&"|"#"|"|";
 NAMETEXT = STARTNAMETEXT, NAMETEXTSECTION;
 STARTNAMETEXT = (STARTNAMEGRAPHICCHARACTER) | ("(", NAMETEXTSECTION, ")");
 NAMETEXTSECTION = {NAMEGRAPHICCHARACTER}, {"(", {NAMEGRAPHICCHARACTER}, ")"},{NAMEGRAPHICCHARACTER};
