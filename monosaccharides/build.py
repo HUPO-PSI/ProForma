@@ -43,18 +43,50 @@ def make_generic_defn(scls: glypy.structure.SuperClass) -> str:
     return "A generic monosaccharide with %d backbone carbons" % scls.value
 
 
+fancy_defns = {line.split("\t")[0]: line.split("\t")[1] for line in """Hex	Hexose
+HexNAc	N-Acetyl Hexose
+HexS	Hexose Sulfate
+HexP	Hexose Phosphate
+HexNAcS	N-Acetyl Hexose Sulfate
+HexN	Hexosamine
+HexNS	N-Sulfo Hexosamine
+dHex	Deoxy-Hexose
+aHex	Hexuronic Acid
+en,aHex	Anhydro-Hexuronic Acid
+Neu	Neuraminic acid
+NeuAc	N-acetyl Neuraminic Acid / Sialic Acid
+NeuGc	N-glycolyl Neuraminic Acid
+Sug	Sugose
+Tri	Triose
+Tet	Tetrose
+Pen	Pentose
+Hep	Heptose
+Oct	Octose
+Non	Nonose
+Dec	Decose
+Fuc	Fucose, a stereochemical assignment of dHex abundant in mammals
+Kdo	Ketodeoxyoctonic acid
+Kdn	Ketodeoxynonulosonic acid
+Sulfo	Sulfuric acid
+Phospho	Phosphoric acid""".splitlines()}
+
 class RecordType(TypedDict):
     name: str
     synonyms: list[str] | None
     defn: str | None
     tp: str | None
     parent: str | None
+    source_name: str | None
 
     @classmethod
     def from_name(cls, name: str):
         if isinstance(name, dict):
+            if 'source_name' not in name:
+                name['source_name'] = name['name']
+            if "synonyms" not in name:
+                name['synonyms'] = []
             return name | {"tp": "monosaccharide"}
-        return {"name": name, "synonyms": [], "tp": "monosaccharide", "defn": None}
+        return {"name": name, "synonyms": [], "tp": "monosaccharide", "defn": None, "source_name": name}
 
     @classmethod
     def from_superclass(cls, supercls: glypy.structure.SuperClass):
@@ -64,14 +96,16 @@ class RecordType(TypedDict):
                 "synonyms": [],
                 "tp": "superclass",
                 "defn": make_generic_defn(supercls),
+                "source_name": None,
             }
         )
 
     @classmethod
-    def from_substituent(cls, subst_name: str, synonyms: list[str]):
+    def from_substituent(cls, subst_name: str, synonyms: list[str], source_name: str | None = None):
         return RecordType(
             {
                 "name": subst_name,
+                "source_name": source_name or subst_name,
                 "synonyms": synonyms,
                 "defn": None,
                 "tp": "substituent",
@@ -121,7 +155,7 @@ def make_supercls_entry(record: RecordType, counter: int):
         PropertyValueClause(
             LiteralPropertyValue(
                 UnprefixedIdent("has_monoisotopic_mass"),
-                f"{mono.mass():0.10f}",
+                f"{mono.mass():0.4f}",
                 PrefixedIdent("xsd", "float"),
             )
         ),
@@ -131,7 +165,7 @@ def make_supercls_entry(record: RecordType, counter: int):
 
 def make_monosaccharide_entry(record: RecordType, counter: int):
     name = record["name"]
-    mono = from_iupac_lite(name)
+    mono = from_iupac_lite(record["source_name"])
 
     synonyms_of = (
         list(
@@ -149,7 +183,7 @@ def make_monosaccharide_entry(record: RecordType, counter: int):
                 ],
             )
         )
-        + [s for s in synonyms.monosaccharides.get(str(mono), []) if s != str(mono)]
+        + [s for s in synonyms.monosaccharides.get(str(mono), []) if s != str(mono) and s != name]
         + record.get("synonyms", [])
     )
 
@@ -160,10 +194,17 @@ def make_monosaccharide_entry(record: RecordType, counter: int):
     if parent:
         is_a.append(IsAClause(parent))
 
+    defn = record.get('defn')
+    if not defn:
+        if name in fancy_defns:
+            defn = fancy_defns[name]
+        else:
+            defn = str(mono)
+
     clauses = [
         make_accession(mono, name, counter),
         NameClause(name),
-        DefClause(record.get("defn") if record.get("defn") else str(mono)),
+        DefClause(defn),
         *is_a,
         *synonyms_of,
         PropertyValueClause(
@@ -176,7 +217,7 @@ def make_monosaccharide_entry(record: RecordType, counter: int):
         PropertyValueClause(
             LiteralPropertyValue(
                 UnprefixedIdent("has_monoisotopic_mass"),
-                f"{mono.mass():0.10f}",
+                f"{mono.mass():0.4f}",
                 PrefixedIdent("xsd", "float"),
             )
         ),
@@ -186,16 +227,26 @@ def make_monosaccharide_entry(record: RecordType, counter: int):
 
 def make_substituent_entry(record: RecordType, counter: int):
     name = record["name"]
-    subst = from_iupac_lite(name)
+    subst = from_iupac_lite(record['source_name'])
 
     synonyms_of = [
         SynonymClause(Synonym(syn, "EXACT")) for syn in record.get("synonyms", [])
     ]
 
+    if record['source_name'] != name:
+        synonyms_of.append(SynonymClause(Synonym(record['source_name'], 'EXACT')))
+
+    defn = record.get("defn")
+    if not defn:
+        if name in fancy_defns:
+            defn = fancy_defns[name]
+        else:
+            defn = str(subst)[1:]
+
     clauses = [
         make_accession(subst, name, counter),
         NameClause(name),
-        DefClause(record.get("defn") if record.get("defn") else str(subst)[1:]),
+        DefClause(defn),
         *synonyms_of,
         PropertyValueClause(
             LiteralPropertyValue(
@@ -207,7 +258,7 @@ def make_substituent_entry(record: RecordType, counter: int):
         PropertyValueClause(
             LiteralPropertyValue(
                 UnprefixedIdent("has_monoisotopic_mass"),
-                f"{subst.mass():0.10f}",
+                f"{subst.mass():0.4f}",
                 PrefixedIdent("xsd", "float"),
             )
         ),
@@ -247,7 +298,7 @@ monosaccharide_recs = list(
             "HexNAc",
             "HexS",
             "HexP",
-            "HexNAc(S)",
+            {"name": "HexNAcS", "source_name": "HexNAc(S)"},
             "NeuAc",
             "NeuGc",
             "Neu",
@@ -264,7 +315,16 @@ monosaccharide_recs = list(
 substituent_recs = list(
     map(
         lambda x: RecordType.from_substituent(*x),
-        [("sulfate", ["S", "Sulfo"]), ("phosphate", ["P", "Phospho"])],
+        [
+            (
+                "Sulfo",
+                [
+                    "S",
+                ],
+                "sulfate",
+            ),
+            ("Phospho", ["P", ], "phosphate"),
+        ],
     )
 )
 
