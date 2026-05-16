@@ -1,7 +1,7 @@
 format-version: 1.2
 default-namespace: MONO
 remark: creator: Joshua Klein <jaklein <-at-> bu.edu>
-date: 14:05:2026 22:09
+date: 16:05:2026 12:32
 ontology: MONO
 
 [Term]
@@ -261,7 +261,7 @@ name: Sulfo
 def: "Sulfuric acid" []
 synonym: "S" EXACT []
 synonym: "sulfate" EXACT []
-property_value: has_chemical_formula "H0O3S1" xsd:string
+property_value: has_chemical_formula "O3S1" xsd:string
 property_value: has_monoisotopic_mass "79.9568" xsd:float
 
 [Term]

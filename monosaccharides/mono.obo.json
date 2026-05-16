@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "date": "14:05:2026 22:09",
+    "date": "16:05:2026 12:32",
     "default-namespace": "MONO",
     "format-version": "1.2",
     "ontology": "MONO",
@@ -357,7 +357,7 @@
     "MONO:00000024": {
       "_class": "term",
       "def": "\"Sulfuric acid\" []",
-      "has_chemical_formula": "H0O3S1",
+      "has_chemical_formula": "O3S1",
       "has_monoisotopic_mass": 79.9568,
       "id": "MONO:00000024",
       "name": "Sulfo",

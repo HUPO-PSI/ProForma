@@ -14,7 +14,7 @@ from fastobo.term import (
     SynonymClause,
     TermFrame,
 )
-from glypy.composition import formula
+from glypy.composition import formula as _formula
 from glypy.io import glycoct, iupac, wurcs
 from glypy.io.nomenclature import synonyms
 from glypy.structure.glycan_composition import from_iupac_lite, to_iupac_lite
@@ -41,6 +41,14 @@ def to_format(dialect, mono):
 
 def make_generic_defn(scls: glypy.structure.SuperClass) -> str:
     return "A generic monosaccharide with %d backbone carbons" % scls.value
+
+
+def formula(composition):
+    composition = dict(composition)
+    for k, v in list(composition.items()):
+        if v == 0:
+            composition.pop(k)
+    return _formula(composition)
 
 
 fancy_defns = {line.split("\t")[0]: line.split("\t")[1] for line in """Hex	Hexose
@@ -243,6 +251,12 @@ def make_substituent_entry(record: RecordType, counter: int):
         else:
             defn = str(subst)[1:]
 
+    # Remove 0 count elements
+    comp = subst.total_composition()
+    for k, v in list(comp.items()):
+        if v == 0:
+            comp.pop(k)
+
     clauses = [
         make_accession(subst, name, counter),
         NameClause(name),
@@ -251,7 +265,7 @@ def make_substituent_entry(record: RecordType, counter: int):
         PropertyValueClause(
             LiteralPropertyValue(
                 UnprefixedIdent("has_chemical_formula"),
-                f"{formula(subst.total_composition())}",
+                f"{formula(comp)}",
                 PrefixedIdent("xsd", "string"),
             )
         ),
