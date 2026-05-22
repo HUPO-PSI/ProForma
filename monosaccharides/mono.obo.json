@@ -1,69 +1,146 @@
 {
   "metadata": {
-    "date": "2020-09-13 21:35:23.314000",
+    "date": "16:05:2026 12:32",
+    "default-namespace": "MONO",
     "format-version": "1.2",
     "ontology": "MONO",
-    "remark": [
-      "namespace: MONO",
-      "creator: Joshua Klein <jaklein <-at-> bu.edu>"
-    ]
+    "remark": "creator: Joshua Klein <jaklein <-at-> bu.edu>"
   },
   "terms": {
-    "MONO:077F5949": {
-      "def": "\"A generic monosaccharide with 7 backbone carbons\"",
-      "has_chemical_formula": "C7H12O6",
-      "has_monoisotopic_mass": 192.063388102,
-      "id": "MONO:077F5949",
-      "name": "Hep",
-      "synonym": [
-        "RES\\n1b:x-xgro-HEP-x:x\\nLIN\\n",
-        "?-?-Hepx",
-        "uxxxxxh",
-        "Hep"
-      ]
-    },
-    "MONO:095E7DD0": {
-      "def": "\"Phosphate\"",
-      "has_chemical_formula": "H1O3P1",
-      "has_monoisotopic_mass": 79.9663305208,
-      "id": "MONO:095E7DD0",
-      "name": "Phosphate",
-      "synonym": [
-        "P"
-      ]
-    },
-    "MONO:0996D6B5": {
-      "def": "\"aHex\"",
-      "has_chemical_formula": "C6H8O6",
-      "has_monoisotopic_mass": 176.032087974,
-      "id": "MONO:0996D6B5",
-      "name": "aHex",
-      "synonym": [
-        "RES\\n1b:x-HEX-x:x|-1:a\\nLIN\\n",
-        "?-?-a-Hexx",
-        "a-Hex",
-        "HexA"
-      ]
-    },
-    "MONO:0A2A057A": {
-      "def": "\"A generic monosaccharide with 2 backbone carbons\"",
+    "MONO:00000000": {
+      "_class": "term",
+      "def": "\"A generic monosaccharide with 2 backbone carbons\" []",
       "has_chemical_formula": "C2H2O1",
-      "has_monoisotopic_mass": 42.0105646837,
-      "id": "MONO:0A2A057A",
+      "has_monoisotopic_mass": 42.0106,
+      "id": "MONO:00000000",
       "name": "Sug",
+      "relationship": [],
       "synonym": [
         "RES\\n1b:x-SUG-x:x\\nLIN\\n",
         "?-?-Sugx",
-        "uh",
-        "Sug"
+        "uh"
       ]
     },
-    "MONO:0C4F1FA5": {
-      "def": "\"dHex\"",
+    "MONO:00000001": {
+      "_class": "term",
+      "def": "\"A generic monosaccharide with 3 backbone carbons\" []",
+      "has_chemical_formula": "C3H4O2",
+      "has_monoisotopic_mass": 72.0211,
+      "id": "MONO:00000001",
+      "name": "Tri",
+      "relationship": [],
+      "synonym": [
+        "RES\\n1b:x-TRI-x:x\\nLIN\\n",
+        "?-?-Trix",
+        "uxh"
+      ]
+    },
+    "MONO:00000002": {
+      "_class": "term",
+      "def": "\"A generic monosaccharide with 4 backbone carbons\" []",
+      "has_chemical_formula": "C4H6O3",
+      "has_monoisotopic_mass": 102.0317,
+      "id": "MONO:00000002",
+      "name": "Tet",
+      "relationship": [],
+      "synonym": [
+        "RES\\n1b:x-TET-x:x\\nLIN\\n",
+        "?-?-Tetx",
+        "uxxh"
+      ]
+    },
+    "MONO:00000003": {
+      "_class": "term",
+      "def": "\"A generic monosaccharide with 5 backbone carbons\" []",
+      "has_chemical_formula": "C5H8O4",
+      "has_monoisotopic_mass": 132.0423,
+      "id": "MONO:00000003",
+      "name": "Pen",
+      "relationship": [],
+      "synonym": [
+        "RES\\n1b:x-PEN-x:x\\nLIN\\n",
+        "?-?-Penx",
+        "uxxxh"
+      ]
+    },
+    "MONO:00000004": {
+      "_class": "term",
+      "def": "\"A generic monosaccharide with 6 backbone carbons\" []",
+      "has_chemical_formula": "C6H10O5",
+      "has_monoisotopic_mass": 162.0528,
+      "id": "MONO:00000004",
+      "name": "Hex",
+      "relationship": [],
+      "synonym": [
+        "RES\\n1b:x-HEX-x:x\\nLIN\\n",
+        "?-?-Hexx",
+        "uxxxxh"
+      ]
+    },
+    "MONO:00000005": {
+      "_class": "term",
+      "def": "\"A generic monosaccharide with 7 backbone carbons\" []",
+      "has_chemical_formula": "C7H12O6",
+      "has_monoisotopic_mass": 192.0634,
+      "id": "MONO:00000005",
+      "name": "Hep",
+      "relationship": [],
+      "synonym": [
+        "RES\\n1b:x-xgro-HEP-x:x\\nLIN\\n",
+        "?-?-Hepx",
+        "uxxxxxh"
+      ]
+    },
+    "MONO:00000006": {
+      "_class": "term",
+      "def": "\"A generic monosaccharide with 8 backbone carbons\" []",
+      "has_chemical_formula": "C8H14O7",
+      "has_monoisotopic_mass": 222.074,
+      "id": "MONO:00000006",
+      "name": "Oct",
+      "relationship": [],
+      "synonym": [
+        "RES\\n1b:x-OCT-x:x\\nLIN\\n",
+        "?-?-Octx",
+        "uxxxxxxh"
+      ]
+    },
+    "MONO:00000007": {
+      "_class": "term",
+      "def": "\"A generic monosaccharide with 9 backbone carbons\" []",
+      "has_chemical_formula": "C9H16O8",
+      "has_monoisotopic_mass": 252.0845,
+      "id": "MONO:00000007",
+      "name": "Non",
+      "relationship": [],
+      "synonym": [
+        "RES\\n1b:x-xgro-NON-x:x\\nLIN\\n",
+        "?-?-Nonx",
+        "uxh43344h"
+      ]
+    },
+    "MONO:00000008": {
+      "_class": "term",
+      "def": "\"A generic monosaccharide with 10 backbone carbons\" []",
+      "has_chemical_formula": "C10H18O9",
+      "has_monoisotopic_mass": 282.0951,
+      "id": "MONO:00000008",
+      "name": "Dec",
+      "relationship": [],
+      "synonym": [
+        "RES\\n1b:x-DEC-x:x\\nLIN\\n",
+        "?-?-Decx",
+        "uxxxxxxxxh"
+      ]
+    },
+    "MONO:00000009": {
+      "_class": "term",
+      "def": "\"Deoxy-Hexose\" []",
       "has_chemical_formula": "C6H10O4",
-      "has_monoisotopic_mass": 146.057908799,
-      "id": "MONO:0C4F1FA5",
+      "has_monoisotopic_mass": 146.0579,
+      "id": "MONO:00000009",
       "name": "dHex",
+      "relationship": [],
       "synonym": [
         "RES\\n1b:x-HEX-x:x|-1:d\\nLIN\\n",
         "?-?-d-Hexx",
@@ -71,104 +148,85 @@
         "d-Hex"
       ]
     },
-    "MONO:14908737": {
-      "def": "\"HexN\"",
+    "MONO:00000010": {
+      "_class": "term",
+      "def": "\"Fucose, a stereochemical assignment of dHex abundant in mammals\" []",
+      "has_chemical_formula": "C6H10O4",
+      "has_monoisotopic_mass": 146.0579,
+      "id": "MONO:00000010",
+      "name": "Fuc",
+      "relationship": [],
+      "synonym": [
+        "RES\\n1b:x-lgal-HEX-x:x|6:d\\nLIN\\n",
+        "?-L-Fucx",
+        "u1221m",
+        "Fucose"
+      ]
+    },
+    "MONO:00000011": {
+      "_class": "term",
+      "def": "\"Hexosamine\" []",
       "has_chemical_formula": "C6H11N1O4",
-      "has_monoisotopic_mass": 161.068807836,
-      "id": "MONO:14908737",
+      "has_monoisotopic_mass": 161.0688,
+      "id": "MONO:00000011",
       "name": "HexN",
+      "relationship": [],
       "synonym": [
         "RES\\n1b:x-HEX-x:x\\n2s:amino\\nLIN\\n1:1d(-1+1)2n\\n",
         "?-?-HexxN",
-        "uxxxxh_?*N",
-        "HexN"
+        "uxxxxh_?*N"
       ]
     },
-    "MONO:1559E00E": {
-      "def": "\"A generic monosaccharide with 5 backbone carbons\"",
-      "has_chemical_formula": "C5H8O4",
-      "has_monoisotopic_mass": 132.042258735,
-      "id": "MONO:1559E00E",
-      "name": "Pen",
+    "MONO:00000012": {
+      "_class": "term",
+      "def": "\"N-Acetyl Hexose\" []",
+      "has_chemical_formula": "C8H13N1O5",
+      "has_monoisotopic_mass": 203.0794,
+      "id": "MONO:00000012",
+      "name": "HexNAc",
+      "relationship": [],
       "synonym": [
-        "RES\\n1b:x-PEN-x:x\\nLIN\\n",
-        "?-?-Penx",
-        "uxxxh",
-        "Pen"
+        "RES\\n1b:x-HEX-x:x\\n2s:n-acetyl\\nLIN\\n1:1d(-1+1)2n\\n",
+        "?-?-HexxNAc",
+        "uxxxxh_?*NCC/3=O"
       ]
     },
-    "MONO:2281E39B": {
-      "def": "\"A generic monosaccharide with 4 backbone carbons\"",
-      "has_chemical_formula": "C4H6O3",
-      "has_monoisotopic_mass": 102.031694051,
-      "id": "MONO:2281E39B",
-      "name": "Tet",
-      "synonym": [
-        "RES\\n1b:x-TET-x:x\\nLIN\\n",
-        "?-?-Tetx",
-        "uxxh",
-        "Tet"
-      ]
-    },
-    "MONO:252FAE19": {
-      "def": "\"HexS\"",
+    "MONO:00000013": {
+      "_class": "term",
+      "def": "\"Hexose Sulfate\" []",
       "has_chemical_formula": "C6H10O8S1",
-      "has_monoisotopic_mass": 242.009638277,
-      "id": "MONO:252FAE19",
+      "has_monoisotopic_mass": 242.0096,
+      "id": "MONO:00000013",
       "name": "HexS",
+      "relationship": [],
       "synonym": [
         "RES\\n1b:x-HEX-x:x\\n2s:sulfate\\nLIN\\n1:1o(-1+1)2n\\n",
         "?-?-HexxS",
-        "uxxxxh_?*OSO/3=O/3=O",
-        "HexS"
+        "uxxxxh_?*OSO/3=O/3=O"
       ]
     },
-    "MONO:27AA9097": {
-      "def": "\"HexP\"",
+    "MONO:00000014": {
+      "_class": "term",
+      "def": "\"Hexose Phosphate\" []",
       "has_chemical_formula": "C6H11O8P1",
-      "has_monoisotopic_mass": 242.019153939,
-      "id": "MONO:27AA9097",
+      "has_monoisotopic_mass": 242.0192,
+      "id": "MONO:00000014",
       "name": "HexP",
+      "relationship": [],
       "synonym": [
         "RES\\n1b:x-HEX-x:x\\n2s:phosphate\\nLIN\\n1:1o(-1+1)2n\\n",
         "?-?-HexxP",
-        "uxxxxh_?*OPO/3O/3=O",
-        "HexP"
+        "uxxxxh_?*OPO/3O/3=O"
       ]
     },
-    "MONO:2A76C372": {
-      "def": "\"Neu5Ac\"",
-      "has_chemical_formula": "C11H17N1O8",
-      "has_monoisotopic_mass": 291.095416506,
-      "id": "MONO:2A76C372",
-      "name": "Neu5Ac",
-      "synonym": [
-        "RES\\n1b:x-dgro-dgal-NON-x:x|1:a|2:keto|3:d\\n2s:n-acetyl\\nLIN\\n1:1d(5+1)2n\\n",
-        "?-D-Neux5NAc",
-        "Aud21122h_5*NCC/3=O",
-        "Sialic Acid",
-        "NeuAc"
-      ]
-    },
-    "MONO:2CC56422": {
-      "def": "\"A generic monosaccharide with 9 backbone carbons\"",
-      "has_chemical_formula": "C9H16O8",
-      "has_monoisotopic_mass": 252.08451747,
-      "id": "MONO:2CC56422",
-      "name": "Non",
-      "synonym": [
-        "RES\\n1b:x-xgro-NON-x:x\\nLIN\\n",
-        "?-?-Nonx",
-        "uxh43344h",
-        "Non"
-      ]
-    },
-    "MONO:2D673195": {
-      "def": "\"HexNAcS\"",
+    "MONO:00000015": {
+      "_class": "term",
+      "def": "\"N-Acetyl Hexose Sulfate\" []",
       "has_chemical_formula": "C8H13N1O8S1",
-      "has_monoisotopic_mass": 283.036187378,
-      "id": "MONO:2D673195",
+      "has_monoisotopic_mass": 283.0362,
+      "id": "MONO:00000015",
       "name": "HexNAcS",
+      "relationship": [],
       "synonym": [
         "RES\\n1b:x-HEX-x:x\\n2s:n-acetyl\\n3s:sulfate\\nLIN\\n1:1d(-1+1)2n\\n2:1o(-1+1)3n\\n",
         "?-?-HexxNAc(S)",
@@ -176,38 +234,30 @@
         "HexNAc(S)"
       ]
     },
-    "MONO:2F3DD9C9": {
-      "def": "\"A generic monosaccharide with 10 backbone carbons\"",
-      "has_chemical_formula": "C10H18O9",
-      "has_monoisotopic_mass": 282.095082153,
-      "id": "MONO:2F3DD9C9",
-      "name": "Dec",
+    "MONO:00000016": {
+      "_class": "term",
+      "def": "\"N-acetyl Neuraminic Acid / Sialic Acid\" []",
+      "has_chemical_formula": "C11H17N1O8",
+      "has_monoisotopic_mass": 291.0954,
+      "id": "MONO:00000016",
+      "name": "NeuAc",
+      "relationship": [],
       "synonym": [
-        "RES\\n1b:x-DEC-x:x\\nLIN\\n",
-        "?-?-Decx",
-        "uxxxxxxxxh",
-        "Dec"
+        "RES\\n1b:x-dgro-dgal-NON-x:x|1:a|2:keto|3:d\\n2s:n-acetyl\\nLIN\\n1:1d(5+1)2n\\n",
+        "?-D-Neux5NAc",
+        "Aud21122h_5*NCC/3=O",
+        "Neu5Ac",
+        "Sialic Acid"
       ]
     },
-    "MONO:3E923C03": {
-      "def": "\"en,aHex\"",
-      "has_chemical_formula": "C6H6O5",
-      "has_monoisotopic_mass": 158.02152329,
-      "id": "MONO:3E923C03",
-      "name": "en,aHex",
-      "synonym": [
-        "RES\\n1b:x-HEX-x:x|-1:en|-1:a\\nLIN\\n",
-        "?-?-en,a-Hexx",
-        "en,a-Hex",
-        "enHexA"
-      ]
-    },
-    "MONO:4DB3A9FC": {
-      "def": "\"NeuGc\"",
+    "MONO:00000017": {
+      "_class": "term",
+      "def": "\"N-glycolyl Neuraminic Acid\" []",
       "has_chemical_formula": "C11H17N1O9",
-      "has_monoisotopic_mass": 307.090331126,
-      "id": "MONO:4DB3A9FC",
+      "has_monoisotopic_mass": 307.0903,
+      "id": "MONO:00000017",
       "name": "NeuGc",
+      "relationship": [],
       "synonym": [
         "RES\\n1b:x-dgro-dgal-NON-x:x|1:a|2:keto|3:d\\n2s:n-glycolyl\\nLIN\\n1:1d(5+1)2n\\n",
         "?-D-Neux5NGc",
@@ -215,107 +265,119 @@
         "Neu5Gc"
       ]
     },
-    "MONO:513BD0C1": {
-      "def": "\"Neu\"",
+    "MONO:00000018": {
+      "_class": "term",
+      "def": "\"Neuraminic acid\" []",
       "has_chemical_formula": "C9H15N1O7",
-      "has_monoisotopic_mass": 249.084851823,
-      "id": "MONO:513BD0C1",
+      "has_monoisotopic_mass": 249.0849,
+      "id": "MONO:00000018",
       "name": "Neu",
+      "relationship": [],
       "synonym": [
         "RES\\n1b:x-dgro-dgal-NON-x:x|1:a|2:keto|3:d\\n2s:amino\\nLIN\\n1:1d(5+1)2n\\n",
         "?-D-Neux",
         "Aud21122h_5*N",
-        "Neuraminic acid",
-        "Neu"
+        "Neuraminic acid"
       ]
     },
-    "MONO:5E288A08": {
-      "def": "\"HexNAc\"",
-      "has_chemical_formula": "C8H13N1O5",
-      "has_monoisotopic_mass": 203.07937252,
-      "id": "MONO:5E288A08",
-      "name": "HexNAc",
-      "synonym": [
-        "RES\\n1b:x-HEX-x:x\\n2s:n-acetyl\\nLIN\\n1:1d(-1+1)2n\\n",
-        "?-?-HexxNAc",
-        "uxxxxh_?*NCC/3=O",
-        "HexNAc"
-      ]
-    },
-    "MONO:61947BA4": {
-      "def": "\"Fuc\"",
-      "has_chemical_formula": "C6H10O4",
-      "has_monoisotopic_mass": 146.057908799,
-      "id": "MONO:61947BA4",
-      "name": "Fuc",
-      "synonym": [
-        "RES\\n1b:x-lgal-HEX-x:x|6:d\\nLIN\\n",
-        "?-L-Fucx",
-        "u1221m",
-        "Fucose",
-        "Fuc"
-      ]
-    },
-    "MONO:695E0092": {
-      "def": "\"HexNS\"",
+    "MONO:00000019": {
+      "_class": "term",
+      "def": "\"N-Sulfo Hexosamine\" []",
       "has_chemical_formula": "C6H11N1O7S1",
-      "has_monoisotopic_mass": 241.025622694,
-      "id": "MONO:695E0092",
+      "has_monoisotopic_mass": 241.0256,
+      "id": "MONO:00000019",
       "name": "HexNS",
+      "relationship": [],
       "synonym": [
         "RES\\n1b:x-HEX-x:x\\n2s:n-sulfate\\nLIN\\n1:1d(-1+1)2n\\n",
         "?-?-HexxNS",
-        "uxxxxh_?*NSO/3=O/3=O",
-        "HexNS"
+        "uxxxxh_?*NSO/3=O/3=O"
       ]
     },
-    "MONO:6BAAE1B1": {
-      "def": "\"A generic monosaccharide with 3 backbone carbons\"",
-      "has_chemical_formula": "C3H4O2",
-      "has_monoisotopic_mass": 72.0211293674,
-      "id": "MONO:6BAAE1B1",
-      "name": "Tri",
+    "MONO:00000020": {
+      "_class": "term",
+      "def": "\"Hexuronic Acid\" []",
+      "has_chemical_formula": "C6H8O6",
+      "has_monoisotopic_mass": 176.0321,
+      "id": "MONO:00000020",
+      "name": "aHex",
+      "relationship": [],
       "synonym": [
-        "RES\\n1b:x-TRI-x:x\\nLIN\\n",
-        "?-?-Trix",
-        "uxh",
-        "Tri"
+        "RES\\n1b:x-HEX-x:x|-1:a\\nLIN\\n",
+        "?-?-a-Hexx",
+        "a-Hex",
+        "HexA"
       ]
     },
-    "MONO:6FD0344F": {
-      "def": "\"A generic monosaccharide with 8 backbone carbons\"",
-      "has_chemical_formula": "C8H14O7",
-      "has_monoisotopic_mass": 222.073952786,
-      "id": "MONO:6FD0344F",
-      "name": "Oct",
+    "MONO:00000021": {
+      "_class": "term",
+      "def": "\"Anhydro-Hexuronic Acid\" []",
+      "has_chemical_formula": "C6H6O5",
+      "has_monoisotopic_mass": 158.0215,
+      "id": "MONO:00000021",
+      "name": "en,aHex",
+      "relationship": [],
       "synonym": [
-        "RES\\n1b:x-OCT-x:x\\nLIN\\n",
-        "?-?-Octx",
-        "uxxxxxxh",
-        "Oct"
+        "RES\\n1b:x-HEX-x:x|-1:en|-1:a\\nLIN\\n",
+        "?-?-en,a-Hexx",
+        "en,a-Hex",
+        "dHexA"
       ]
     },
-    "MONO:70565C17": {
-      "def": "\"Sulfate\"",
-      "has_chemical_formula": "H0O3S1",
-      "has_monoisotopic_mass": 79.9568148587,
-      "id": "MONO:70565C17",
-      "name": "Sulfate",
+    "MONO:00000022": {
+      "_class": "term",
+      "def": "\"Ketodeoxynonulosonic acid\" []",
+      "has_chemical_formula": "C9H14O8",
+      "has_monoisotopic_mass": 250.0689,
+      "id": "MONO:00000022",
+      "name": "Kdn",
+      "relationship": [],
       "synonym": [
-        "S"
+        "RES\\n1b:x-dgro-dgal-NON-x:x|1:a|2:keto|3:d\\nLIN\\n",
+        "?-D-Kdnx",
+        "Aud21122h",
+        "2-Keto-3-deoxynanonic acid",
+        "KDN"
       ]
     },
-    "MONO:7AB4EB73": {
-      "def": "\"A generic monosaccharide with 6 backbone carbons\"",
-      "has_chemical_formula": "C6H10O5",
-      "has_monoisotopic_mass": 162.052823418,
-      "id": "MONO:7AB4EB73",
-      "name": "Hex",
+    "MONO:00000023": {
+      "_class": "term",
+      "def": "\"Ketodeoxyoctonic acid\" []",
+      "has_chemical_formula": "C8H12O7",
+      "has_monoisotopic_mass": 220.0583,
+      "id": "MONO:00000023",
+      "name": "Kdo",
+      "relationship": [],
       "synonym": [
-        "RES\\n1b:x-HEX-x:x\\nLIN\\n",
-        "?-?-Hexx",
-        "uxxxxh",
-        "Hex"
+        "RES\\n1b:x-dman-OCT-x:x|1:a|2:keto|3:d\\nLIN\\n",
+        "?-D-Kdox",
+        "Aud1122h"
+      ]
+    },
+    "MONO:00000024": {
+      "_class": "term",
+      "def": "\"Sulfuric acid\" []",
+      "has_chemical_formula": "O3S1",
+      "has_monoisotopic_mass": 79.9568,
+      "id": "MONO:00000024",
+      "name": "Sulfo",
+      "relationship": [],
+      "synonym": [
+        "S",
+        "sulfate"
+      ]
+    },
+    "MONO:00000025": {
+      "_class": "term",
+      "def": "\"Phosphoric acid\" []",
+      "has_chemical_formula": "H1O3P1",
+      "has_monoisotopic_mass": 79.9663,
+      "id": "MONO:00000025",
+      "name": "Phospho",
+      "relationship": [],
+      "synonym": [
+        "P",
+        "phosphate"
       ]
     }
   }
