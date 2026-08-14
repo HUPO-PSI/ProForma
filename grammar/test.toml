@@ -270,6 +270,8 @@ positive = [
     "V(?VCH)AT",
     "X[+379.147]UEX[+365.113]",
     "YPVLN[GNO:G62765YT]VTMPN[GNO:G02815KT]NSNGKFDK",
+    "[Acetyl][Acetyl][Carbamyl]-QPEPTIDE",
+    "PEPTIDEG-[Methyl][Amidated][INFO:A lot of C terminal mods]",
 ]
 negative = [
     "<D>A[UNIMODIFY:+2]+<D>A",

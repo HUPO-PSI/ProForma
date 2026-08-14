@@ -1,3 +1,4 @@
+(* EBNF notation following ISO/IEC 14977 (1996) *)
 (* Main entry point *)
 proforma = peptidoformIonSet;
 peptidoformIonSet = [namePeptidoformIonSet], {modGlobal}, {peptidoformIon, "+"}, peptidoformIon;
@@ -60,8 +61,8 @@ modName = [CVAbbreviation, ":"], MODTEXT;
 (* Info tag *)
 info = I,N,F,O,":", MODTEXT;
 
-modNTerm = modOrLabel, [modOrLabel], "-";
-modCTerm = "-", modOrLabel, [modOrLabel];
+modNTerm = modOrLabel, {modOrLabel}, "-";
+modCTerm = "-", modOrLabel, {modOrLabel};
 
 (* Possible labels/named modifications *)
 modLabel = "#", (modLabelXL | modLabelBranch | modLabelAmbiguous);
